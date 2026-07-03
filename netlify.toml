@@ -1,0 +1,25 @@
+# Netlify config for the Elephantaes landing page.
+#
+# Two ways to deploy:
+#  1. Drag-and-drop: build locally with `npm --prefix site run build`,
+#     then drag `site/out` onto https://app.netlify.com/drop
+#  2. Git-based: push this repo to GitHub and connect it in Netlify.
+#     With this file at the root, Netlify auto-uses the settings below.
+
+[build]
+  base = "site"
+  command = "npm run build"
+  publish = "out"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+[[headers]]
+  for = "/_next/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/gallery/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

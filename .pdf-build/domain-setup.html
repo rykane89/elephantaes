@@ -1,0 +1,702 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Elephantaes · Going Live · A walkthrough for Alex</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..900,0..100,0..1&family=Inter:wght@300;400;500;600&family=Allura&display=swap" rel="stylesheet">
+
+<style>
+  @page {
+    size: Letter;
+    margin: 0;
+  }
+
+  :root {
+    --cream-50: #fbf6e2;
+    --cream-100: #f8f0d2;
+    --cream-200: #f5ebc8;
+    --cream-300: #ecdfae;
+    --line: #e3d6ad;
+
+    --forest-700: #2e4a2a;
+    --forest-800: #1f3219;
+    --forest-900: #142010;
+
+    --honey: #c9985c;
+    --honey-soft: #e0b97b;
+
+    --ink: #1a2415;
+    --ink-soft: #4a5546;
+
+    --display: 'Fraunces', 'Cormorant Garamond', Georgia, serif;
+    --script: 'Allura', 'Cormorant Garamond', cursive;
+    --sans: 'Inter', -apple-system, system-ui, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: var(--sans);
+    color: var(--ink);
+    background: var(--cream-100);
+    -webkit-font-smoothing: antialiased;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  .page {
+    width: 8.5in;
+    height: 11in;
+    page-break-after: always;
+    position: relative;
+    overflow: hidden;
+    padding: 0.85in 0.85in 0.7in;
+    background:
+      radial-gradient(900px 500px at 90% -10%, rgba(201, 152, 92, 0.18), transparent 60%),
+      radial-gradient(700px 400px at -10% 110%, rgba(46, 74, 42, 0.10), transparent 60%),
+      var(--cream-100);
+  }
+  .page:last-of-type { page-break-after: auto; }
+
+  .page::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.4;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.18 0 0 0 0 0.29 0 0 0 0 0.16 0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+
+  .runner-top, .runner-bottom {
+    position: absolute;
+    left: 0.85in;
+    right: 0.85in;
+    color: var(--forest-700);
+    opacity: 0.65;
+    font-size: 9px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .runner-top { top: 0.5in; }
+  .runner-bottom { bottom: 0.4in; }
+
+  .runner-top .mono, .runner-bottom .mono {
+    font-family: var(--display);
+    font-weight: 600;
+    font-style: italic;
+    font-size: 16px;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    color: var(--forest-700);
+    opacity: 1;
+  }
+
+  /* =============== COVER =============== */
+  .cover { padding: 0; }
+
+  .cover-eyebrow {
+    position: absolute;
+    top: 0.7in;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.6em;
+    align-items: center;
+    color: var(--forest-700);
+    opacity: 0.7;
+    font-size: 10px;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .cover-eyebrow::before, .cover-eyebrow::after {
+    content: "";
+    width: 28px;
+    height: 1px;
+    background: var(--forest-700);
+    opacity: 0.4;
+  }
+
+  .cover-mark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -55%);
+    width: 4.6in;
+    height: 4.6in;
+    display: grid;
+    place-items: center;
+  }
+  .cover-mark .ring {
+    position: absolute;
+    inset: 0;
+    border: 1px solid var(--forest-700);
+    opacity: 0.18;
+    border-radius: 50%;
+  }
+  .cover-mark .ring.inner { inset: 12%; opacity: 0.13; }
+  .cover-mark .ring.innermost { inset: 22%; opacity: 0.08; }
+
+  .cover-mark svg.curve-text {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .cover-mark .word {
+    font-family: var(--display);
+    font-weight: 300;
+    font-size: 4.4rem;
+    letter-spacing: -0.02em;
+    color: var(--forest-800);
+    line-height: 1;
+    text-align: center;
+    font-variation-settings: 'opsz' 144, 'SOFT' 100;
+  }
+  .cover-mark .word em {
+    font-style: italic;
+    color: var(--honey);
+    font-weight: 400;
+    display: block;
+    font-size: 0.6em;
+    margin-top: 0.2em;
+  }
+
+  .cover-bottom {
+    position: absolute;
+    bottom: 0.7in;
+    left: 0;
+    right: 0;
+    text-align: center;
+  }
+  .cover-bottom h1 {
+    font-family: var(--display);
+    font-weight: 300;
+    font-size: 2rem;
+    color: var(--forest-800);
+    letter-spacing: -0.01em;
+    margin: 0 0 8px;
+    font-variation-settings: 'opsz' 144;
+  }
+  .cover-bottom h1 em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--honey);
+  }
+  .cover-bottom .sub {
+    font-size: 10px;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--forest-700);
+    opacity: 0.7;
+  }
+
+  /* =============== Generic page chrome =============== */
+  h2.section-title {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: 2.6rem;
+    color: var(--forest-800);
+    letter-spacing: -0.015em;
+    margin: 0;
+    line-height: 1.05;
+    font-variation-settings: 'opsz' 144, 'SOFT' 100;
+  }
+  h2.section-title em {
+    font-style: italic;
+    color: var(--forest-700);
+    font-weight: 300;
+    display: block;
+  }
+  .eyebrow {
+    color: var(--forest-700);
+    opacity: 0.75;
+    font-size: 10px;
+    letter-spacing: 0.36em;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6em;
+    margin-bottom: 22px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 28px;
+    height: 1px;
+    background: var(--forest-700);
+    opacity: 0.5;
+  }
+  .lede {
+    font-family: var(--display);
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1.42;
+    font-variation-settings: 'opsz' 72;
+    margin: 22px 0 0;
+    max-width: 5.6in;
+  }
+
+  p {
+    color: var(--ink-soft);
+    font-size: 11.5px;
+    line-height: 1.6;
+    margin: 0 0 11px;
+    max-width: 6in;
+  }
+
+  p strong, li strong { color: var(--forest-800); font-weight: 600; }
+
+  hr.hairline {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--forest-700), transparent);
+    opacity: 0.25;
+    margin: 22px 0;
+  }
+
+  /* =============== Step blocks =============== */
+  .step {
+    display: grid;
+    grid-template-columns: 0.8in 1fr;
+    gap: 18px;
+    margin-top: 22px;
+    page-break-inside: avoid;
+  }
+  .step-num {
+    font-family: var(--display);
+    font-weight: 300;
+    font-size: 3.6rem;
+    color: var(--honey);
+    line-height: 0.85;
+    letter-spacing: -0.02em;
+    font-variation-settings: 'opsz' 144;
+  }
+  .step-num .small {
+    display: block;
+    font-size: 9px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--forest-700);
+    opacity: 0.7;
+    margin-top: 8px;
+    font-family: var(--sans);
+    font-weight: 500;
+  }
+  .step h3 {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 1.3rem;
+    color: var(--forest-800);
+    margin: 0 0 10px;
+    line-height: 1.15;
+    font-variation-settings: 'opsz' 144;
+  }
+  .step ol, .step ul {
+    margin: 0 0 12px;
+    padding-left: 18px;
+    color: var(--ink);
+    font-size: 11px;
+    line-height: 1.65;
+  }
+  .step ol li, .step ul li {
+    margin-bottom: 5px;
+    color: var(--ink-soft);
+  }
+  .step ol li::marker { color: var(--honey); font-weight: 600; }
+
+  .checklist {
+    list-style: none;
+    padding: 0;
+    margin: 8px 0 0;
+  }
+  .checklist li {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    padding: 5px 0;
+    font-size: 10.5px;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+  .checklist li .mark {
+    flex-shrink: 0;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 9px;
+    font-weight: 700;
+    margin-top: 2px;
+  }
+  .checklist li .mark.yes { background: var(--forest-700); color: var(--cream-100); }
+  .checklist li .mark.no { background: rgba(46, 74, 42, 0.12); color: var(--forest-800); }
+
+  .callout {
+    border: 1px solid rgba(46, 74, 42, 0.18);
+    background: rgba(248, 240, 210, 0.6);
+    padding: 16px 18px;
+    border-radius: 12px;
+    margin-top: 14px;
+  }
+  .callout .label {
+    color: var(--honey);
+    font-size: 9px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .callout p { margin: 0; font-size: 11px; }
+  .callout p + p { margin-top: 8px; }
+
+  /* =============== Cost table =============== */
+  .cost-table {
+    margin-top: 22px;
+    border: 1px solid rgba(46, 74, 42, 0.18);
+    background: rgba(248, 240, 210, 0.55);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+  .cost-row {
+    display: grid;
+    grid-template-columns: 1.5fr 0.7fr 2fr;
+    gap: 16px;
+    padding: 14px 22px;
+    border-bottom: 1px solid rgba(46, 74, 42, 0.12);
+    align-items: baseline;
+  }
+  .cost-row:last-child { border-bottom: none; }
+  .cost-row.total {
+    background: rgba(201, 152, 92, 0.16);
+    border-top: 1px solid rgba(201, 152, 92, 0.4);
+  }
+  .cost-row .what {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--forest-800);
+    font-variation-settings: 'opsz' 144;
+  }
+  .cost-row .price {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 1.15rem;
+    color: var(--forest-800);
+    font-variation-settings: 'opsz' 144;
+  }
+  .cost-row.total .price { color: var(--honey); }
+  .cost-row .why {
+    font-size: 10.5px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+
+  /* =============== FAQ =============== */
+  .faq {
+    margin-top: 14px;
+  }
+  .faq .q {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.05rem;
+    color: var(--forest-800);
+    margin: 16px 0 4px;
+    line-height: 1.3;
+  }
+  .faq .a {
+    font-size: 11px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .closing {
+    text-align: center;
+    margin-top: 28px;
+  }
+  .closing .script {
+    font-family: var(--script);
+    font-size: 2.4rem;
+    color: var(--honey);
+    line-height: 1;
+  }
+  .closing .sig {
+    font-family: var(--display);
+    font-style: italic;
+    color: var(--ink-soft);
+    margin-top: 6px;
+    font-size: 1rem;
+  }
+
+  .save-list {
+    list-style: none;
+    padding: 0;
+    margin: 12px 0 0;
+  }
+  .save-list li {
+    padding: 10px 0;
+    border-bottom: 1px dashed rgba(46, 74, 42, 0.18);
+    font-size: 11px;
+    color: var(--ink);
+    line-height: 1.55;
+  }
+  .save-list li:last-child { border-bottom: none; }
+  .save-list li strong { display: block; color: var(--forest-800); margin-bottom: 2px; font-size: 11.5px; }
+</style>
+</head>
+<body>
+
+<!-- ============== COVER ============== -->
+<section class="page cover">
+  <div class="cover-eyebrow">For Alex &nbsp;·&nbsp; Elephantaes Cakes &amp; Delicacies</div>
+
+  <div class="cover-mark">
+    <div class="ring"></div>
+    <div class="ring inner"></div>
+    <div class="ring innermost"></div>
+
+    <svg class="curve-text" viewBox="0 0 400 400">
+      <defs>
+        <path id="cover-ring" d="M200,200 m-180,0 a180,180 0 1,1 360,0 a180,180 0 1,1 -360,0" />
+      </defs>
+      <text fill="#2e4a2a" font-family="Fraunces" font-size="13" letter-spacing="6" opacity="0.75">
+        <textPath href="#cover-ring" startOffset="0">
+          · DOMAIN · HOSTING · DNS · SSL · DOMAIN · HOSTING · DNS · SSL ·
+        </textPath>
+      </text>
+    </svg>
+
+    <div class="word">Going<em>live.</em></div>
+  </div>
+
+  <div class="cover-bottom">
+    <h1>A 15-minute walkthrough <em>· for Alex</em></h1>
+    <div class="sub">Domain &nbsp;·&nbsp; Hosting &nbsp;·&nbsp; Setup</div>
+  </div>
+</section>
+
+
+<!-- ============== INTRO ============== -->
+<section class="page">
+  <div class="runner-top">
+    <span class="mono">RK</span>
+    <span>00 · Welcome</span>
+  </div>
+
+  <span class="eyebrow">For Alex</span>
+  <h2 class="section-title">Hi! Here's everything <em>you'll do on your end.</em></h2>
+
+  <p class="lede">Total time: about 15 minutes. Total cost: around $11 for the year, paid to one place (Porkbun), in your name, on your card. I'll handle the rest from there.</p>
+
+  <hr class="hairline" />
+
+  <p>The site is built and ready. The only piece missing is your domain (the web address people will type to find you). You'll buy that yourself, in your own name, so the business stays yours, no matter what. Then I'll point the site at it.</p>
+
+  <p>This guide walks through the three small things you need to do, in order. If anything looks weird mid-step, just text me and I'll talk you through it.</p>
+
+  <div class="callout">
+    <span class="label">The plan, at a glance</span>
+    <p><strong>Step 1.</strong> You buy <strong>elephantaes.com</strong> on Porkbun (~$11/yr).</p>
+    <p><strong>Step 2.</strong> You text me to say it's bought.</p>
+    <p><strong>Step 3.</strong> I send you two short DNS records. You paste them in. Site goes live.</p>
+  </div>
+
+  <div class="runner-bottom">
+    <span>Elephantaes · Going Live</span>
+    <span>Page 02</span>
+  </div>
+</section>
+
+
+<!-- ============== STEP 1 ============== -->
+<section class="page">
+  <div class="runner-top">
+    <span class="mono">RK</span>
+    <span>01 · Buy the domain</span>
+  </div>
+
+  <span class="eyebrow">Step · 01</span>
+  <h2 class="section-title">Buy elephantaes.com <em>on Porkbun.</em></h2>
+
+  <p class="lede">Porkbun is a domain registrar. They sell the address; that's it. Your business stays yours; if you ever leave them, the domain comes with you.</p>
+
+  <hr class="hairline" />
+
+  <div class="step">
+    <div class="step-num">01<span class="small">Sign up</span></div>
+    <div>
+      <h3>Make a Porkbun account</h3>
+      <ol>
+        <li>Go to <strong>porkbun.com</strong></li>
+        <li>Top right, click <strong>Sign Up</strong></li>
+        <li>Use your real email (this is the account that owns the domain forever)</li>
+        <li>Pick a strong password and save it somewhere safe (a password manager, your phone's notes, anywhere you won't lose it)</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">02<span class="small">Search</span></div>
+    <div>
+      <h3>Search for the domain</h3>
+      <ol>
+        <li>On the homepage, type <strong>elephantaes.com</strong> in the big search bar</li>
+        <li>If it's available, you'll see a price (~$11/yr for a .com)</li>
+        <li>Click <strong>Add to Cart</strong>, then <strong>Checkout</strong></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">03<span class="small">Checkout</span></div>
+    <div>
+      <h3>Watch for these at checkout</h3>
+      <ul class="checklist">
+        <li><span class="mark yes">✓</span><div><strong>WHOIS Privacy: ON.</strong> Free at Porkbun. Hides your home address from public lookup.</div></li>
+        <li><span class="mark yes">✓</span><div><strong>Auto-renew: ON</strong> (recommended). One less thing to remember next year.</div></li>
+        <li><span class="mark no">✕</span><div><strong>Skip the email hosting upsell</strong> ($24/yr). You don't need it. We can add email later when you want it.</div></li>
+        <li><span class="mark no">✕</span><div><strong>Skip the website builder upsell.</strong> We already built your site.</div></li>
+        <li><span class="mark no">✕</span><div><strong>Skip the SSL certificate upsell.</strong> Free with how we're hosting.</div></li>
+      </ul>
+      <p style="margin-top: 14px;">Pay with your card. You'll get a confirmation email within a minute.</p>
+    </div>
+  </div>
+
+  <div class="runner-bottom">
+    <span>Elephantaes · Going Live</span>
+    <span>Page 03</span>
+  </div>
+</section>
+
+
+<!-- ============== STEPS 2 + 3 ============== -->
+<section class="page">
+  <div class="runner-top">
+    <span class="mono">RK</span>
+    <span>02 · Hand off &amp; connect</span>
+  </div>
+
+  <span class="eyebrow">Step · 02 &nbsp;+&nbsp; 03</span>
+  <h2 class="section-title">Send word, paste two records, <em>you're live.</em></h2>
+
+  <hr class="hairline" />
+
+  <div class="step">
+    <div class="step-num">02<span class="small">Tell me</span></div>
+    <div>
+      <h3>Text me you bought it</h3>
+      <p style="margin-bottom: 8px;">That's the whole step. One text. You do <strong>not</strong> need to share your Porkbun login with me. The domain stays in your account.</p>
+      <p>I'll then prep two short DNS records and send them back to you (usually same-day).</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">03<span class="small">Paste in DNS</span></div>
+    <div>
+      <h3>Paste the records I send you</h3>
+      <ol>
+        <li>Log into Porkbun</li>
+        <li>Click <strong>Account</strong>, then <strong>Domain Management</strong></li>
+        <li>Find your domain in the list, click <strong>Details</strong></li>
+        <li>Scroll to <strong>DNS Records</strong></li>
+        <li>Delete any default records that are already there (parking-page stuff)</li>
+        <li>Add the two records I send you (exact copy and paste, I'll spell it out)</li>
+        <li>Click <strong>Save</strong></li>
+      </ol>
+      <p style="margin-top: 10px;">Within an hour (sometimes 5 minutes), your site is live at <strong>elephantaes.com</strong>. I'll confirm it's working and send you the link to share.</p>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top: 22px;">
+    <span class="label">If you get stuck</span>
+    <p>Text or email me at any point. There's no step here you can break permanently. The worst case is "we paste the record, wait an hour, and it didn't take, so we paste it again."</p>
+  </div>
+
+  <div class="runner-bottom">
+    <span>Elephantaes · Going Live</span>
+    <span>Page 04</span>
+  </div>
+</section>
+
+
+<!-- ============== COSTS + KEEP SAFE + FAQ ============== -->
+<section class="page">
+  <div class="runner-top">
+    <span class="mono">RK</span>
+    <span>03 · Costs, keepsakes &amp; FAQ</span>
+  </div>
+
+  <span class="eyebrow">The numbers</span>
+  <h2 class="section-title">What it costs you, <em>ongoing.</em></h2>
+
+  <div class="cost-table">
+    <div class="cost-row">
+      <span class="what">Domain</span>
+      <span class="price">~$11/yr</span>
+      <span class="why">Porkbun, paid yearly. Auto-renew handles it for you.</span>
+    </div>
+    <div class="cost-row">
+      <span class="what">Hosting</span>
+      <span class="price">$0</span>
+      <span class="why">Netlify free tier. Handles way more traffic than you'll get.</span>
+    </div>
+    <div class="cost-row">
+      <span class="what">SSL (the padlock)</span>
+      <span class="price">$0</span>
+      <span class="why">Free with the hosting. Comes on automatically.</span>
+    </div>
+    <div class="cost-row total">
+      <span class="what">Total</span>
+      <span class="price">~$11/yr</span>
+      <span class="why">Roughly $1/mo. Square's per-order fee (2.9% + 30¢) is separate.</span>
+    </div>
+  </div>
+
+  <hr class="hairline" />
+
+  <span class="eyebrow">Keep these safe</span>
+
+  <ul class="save-list">
+    <li><strong>Your Porkbun login</strong>This is the keys to the kingdom. If you lose it, you lose the domain. A password manager is best (1Password, Bitwarden, the iPhone built-in one). At minimum, write it somewhere only you can find.</li>
+    <li><strong>The renewal date</strong>Porkbun emails you, but a calendar reminder is a good backup. With auto-renew on, you're covered.</li>
+  </ul>
+
+  <hr class="hairline" />
+
+  <span class="eyebrow">A few things people ask</span>
+
+  <div class="faq">
+    <div class="q">Why isn't the domain in Ryan's name?</div>
+    <p class="a">Because it's your business. The domain should always be in the owner's name, not the developer's. If we ever stop working together, you keep everything with zero handoff drama.</p>
+
+    <div class="q">Can I get email at @elephantaes.com later?</div>
+    <p class="a">Yes, easily, when you want it. Google Workspace is $6/user/mo, or Porkbun's own email is $24/yr. Not urgent, and we can add it any time.</p>
+
+    <div class="q">What if I want to move off Netlify someday?</div>
+    <p class="a">You change those two DNS records to point somewhere else. Domain stays yours. Site files are yours. No lock-in anywhere.</p>
+  </div>
+
+  <div class="closing">
+    <div class="script">that's it.</div>
+    <div class="sig">Text me when it's bought and we'll get you live.</div>
+  </div>
+
+  <div class="runner-bottom">
+    <span>Elephantaes · Going Live</span>
+    <span>Page 05</span>
+  </div>
+</section>
+
+</body>
+</html>

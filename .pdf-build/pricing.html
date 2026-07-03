@@ -1,0 +1,1130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>RK · Custom Web & Brand · 2026 Pricing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..900,0..100,0..1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  @page {
+    size: Letter;
+    margin: 0;
+  }
+
+  :root {
+    --cream-50: #fbf6e2;
+    --cream-100: #f8f0d2;
+    --cream-200: #f5ebc8;
+    --cream-300: #ecdfae;
+    --line: #e3d6ad;
+
+    --forest-700: #2e4a2a;
+    --forest-800: #1f3219;
+    --forest-900: #142010;
+
+    --honey: #c9985c;
+    --honey-soft: #e0b97b;
+
+    --ink: #1a2415;
+    --ink-soft: #4a5546;
+
+    --display: 'Fraunces', 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Inter', -apple-system, system-ui, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: var(--sans);
+    color: var(--ink);
+    background: var(--cream-100);
+    -webkit-font-smoothing: antialiased;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  .page {
+    width: 8.5in;
+    height: 11in;
+    page-break-after: always;
+    position: relative;
+    overflow: hidden;
+    padding: 0.85in 0.85in 0.7in;
+    background:
+      radial-gradient(900px 500px at 90% -10%, rgba(201, 152, 92, 0.18), transparent 60%),
+      radial-gradient(700px 400px at -10% 110%, rgba(46, 74, 42, 0.10), transparent 60%),
+      var(--cream-100);
+  }
+  .page:last-of-type { page-break-after: auto; }
+
+  /* Paper grain overlay */
+  .page::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.4;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.18 0 0 0 0 0.29 0 0 0 0 0.16 0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+
+  /* Running header / footer */
+  .runner-top, .runner-bottom {
+    position: absolute;
+    left: 0.85in;
+    right: 0.85in;
+    color: var(--forest-700);
+    opacity: 0.6;
+    font-size: 9px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .runner-top { top: 0.5in; }
+  .runner-bottom { bottom: 0.4in; }
+
+  .runner-top .mono, .runner-bottom .mono {
+    font-family: var(--display);
+    font-weight: 600;
+    font-style: italic;
+    font-size: 16px;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    color: var(--forest-700);
+    opacity: 1;
+  }
+
+  /* ----------- Cover ----------- */
+
+  .cover {
+    padding: 0;
+  }
+  .cover-eyebrow {
+    position: absolute;
+    top: 0.7in;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.6em;
+    align-items: center;
+    color: var(--forest-700);
+    opacity: 0.7;
+    font-size: 10px;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+  }
+  .cover-eyebrow::before, .cover-eyebrow::after {
+    content: "";
+    width: 28px;
+    height: 1px;
+    background: var(--forest-700);
+    opacity: 0.4;
+  }
+
+  .cover-mark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -55%);
+    width: 4.6in;
+    height: 4.6in;
+    display: grid;
+    place-items: center;
+  }
+  .cover-mark .ring {
+    position: absolute;
+    inset: 0;
+    border: 1px solid var(--forest-700);
+    opacity: 0.18;
+    border-radius: 50%;
+  }
+  .cover-mark .ring.inner { inset: 12%; opacity: 0.13; }
+  .cover-mark .ring.innermost { inset: 22%; opacity: 0.08; }
+
+  .cover-mark .monogram {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 11rem;
+    letter-spacing: -0.03em;
+    color: var(--forest-700);
+    line-height: 0.78;
+    font-variation-settings: 'opsz' 144, 'SOFT' 100;
+  }
+
+  .cover-mark svg.curve-text {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .cover-bottom {
+    position: absolute;
+    bottom: 0.7in;
+    left: 0;
+    right: 0;
+    text-align: center;
+  }
+  .cover-bottom h1 {
+    font-family: var(--display);
+    font-weight: 300;
+    font-size: 2.2rem;
+    color: var(--forest-800);
+    letter-spacing: -0.01em;
+    margin: 0 0 8px;
+    font-variation-settings: 'opsz' 144;
+  }
+  .cover-bottom h1 em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--honey);
+  }
+  .cover-bottom .sub {
+    font-size: 10px;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--forest-700);
+    opacity: 0.7;
+  }
+
+  /* ----------- Generic page chrome ----------- */
+
+  h2.section-title {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: 3rem;
+    color: var(--forest-800);
+    letter-spacing: -0.015em;
+    margin: 0;
+    line-height: 1.05;
+    font-variation-settings: 'opsz' 144, 'SOFT' 100;
+  }
+  h2.section-title em {
+    font-style: italic;
+    color: var(--forest-700);
+    font-weight: 300;
+    display: block;
+  }
+  .eyebrow {
+    color: var(--forest-700);
+    opacity: 0.75;
+    font-size: 10px;
+    letter-spacing: 0.36em;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6em;
+    margin-bottom: 24px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 28px;
+    height: 1px;
+    background: var(--forest-700);
+    opacity: 0.5;
+  }
+  .lede {
+    font-family: var(--display);
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1.4;
+    font-variation-settings: 'opsz' 72;
+    margin: 28px 0 0;
+    max-width: 5.2in;
+  }
+
+  p {
+    color: var(--ink-soft);
+    font-size: 11.5px;
+    line-height: 1.55;
+    margin: 0 0 12px;
+    max-width: 5.6in;
+  }
+
+  hr.hairline {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--forest-700), transparent);
+    opacity: 0.25;
+    margin: 28px 0;
+  }
+
+  /* ----------- Tier columns ----------- */
+
+  .tier-row {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 0.5in;
+    align-items: start;
+    margin-top: 28px;
+  }
+
+  .tier-name {
+    font-family: var(--display);
+    font-size: 2.4rem;
+    color: var(--forest-800);
+    line-height: 1;
+    margin: 0 0 6px;
+    font-weight: 400;
+    font-variation-settings: 'opsz' 144;
+    letter-spacing: -0.015em;
+  }
+  .tier-name em {
+    font-style: italic;
+    color: var(--honey);
+    font-weight: 300;
+  }
+  .tier-tagline {
+    font-family: var(--display);
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--forest-700);
+    margin: 0 0 18px;
+    font-weight: 300;
+  }
+  .tier-includes {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    counter-reset: incl;
+  }
+  .tier-includes li {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 7px 0;
+    border-bottom: 1px dashed rgba(46, 74, 42, 0.15);
+    font-size: 10.5px;
+    color: var(--ink);
+  }
+  .tier-includes li:last-child { border-bottom: none; }
+  .tier-includes li::before {
+    content: "";
+    flex-shrink: 0;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--forest-700);
+    margin-top: 5px;
+  }
+
+  /* Pricing column */
+  .price-card {
+    border: 1px solid rgba(46, 74, 42, 0.18);
+    background: rgba(248, 240, 210, 0.6);
+    padding: 22px 22px 18px;
+    border-radius: 14px;
+    position: relative;
+  }
+  .price-card .badge {
+    display: inline-block;
+    color: var(--honey);
+    font-size: 9px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  .price-card h3 {
+    font-family: var(--display);
+    font-size: 0.95rem;
+    margin: 0 0 14px;
+    color: var(--forest-800);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .price-card .row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+    padding: 9px 0;
+    border-bottom: 1px solid rgba(46, 74, 42, 0.10);
+  }
+  .price-card .row:last-child { border-bottom: none; }
+  .price-card .row .label {
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--forest-700);
+    opacity: 0.85;
+  }
+  .price-card .row .label.family { color: var(--honey); opacity: 1; }
+  .price-card .row .price {
+    font-family: var(--display);
+    font-size: 1.45rem;
+    color: var(--forest-800);
+    font-weight: 500;
+    font-variation-settings: 'opsz' 144;
+  }
+  .price-card .row .price .one-time {
+    font-size: 8px;
+    letter-spacing: 0.22em;
+    color: var(--ink-soft);
+    margin-left: 6px;
+    font-family: var(--sans);
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  /* Care plans table */
+  .care-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 26px;
+  }
+  .care-card {
+    border: 1px solid rgba(46, 74, 42, 0.18);
+    background: rgba(248, 240, 210, 0.55);
+    padding: 22px 18px 18px;
+    border-radius: 14px;
+    position: relative;
+  }
+  .care-card.gold {
+    background: rgba(201, 152, 92, 0.15);
+    border-color: rgba(201, 152, 92, 0.45);
+  }
+  .care-card .name {
+    font-family: var(--display);
+    font-size: 1.4rem;
+    color: var(--forest-800);
+    margin: 0 0 4px;
+    font-weight: 500;
+    font-variation-settings: 'opsz' 144;
+  }
+  .care-card .blurb {
+    font-size: 10px;
+    color: var(--ink-soft);
+    margin: 0 0 14px;
+    line-height: 1.45;
+    min-height: 3.5em;
+  }
+  .care-card .features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 18px;
+  }
+  .care-card .features li {
+    font-size: 10px;
+    padding: 4px 0;
+    color: var(--ink);
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  .care-card .features li::before {
+    content: "·";
+    color: var(--honey);
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1;
+    margin-top: 1px;
+  }
+  .care-card .price-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+    padding: 7px 0;
+    border-top: 1px solid rgba(46, 74, 42, 0.12);
+  }
+  .care-card .price-row:nth-of-type(1) { border-top: 1px solid rgba(46, 74, 42, 0.18); }
+  .care-card .price-row .lbl {
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--forest-700);
+  }
+  .care-card .price-row .lbl.family { color: var(--honey); }
+  .care-card .price-row .p {
+    font-family: var(--display);
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--forest-800);
+  }
+  .care-card .price-row .p .mo {
+    font-size: 7px;
+    letter-spacing: 0.22em;
+    color: var(--ink-soft);
+    margin-left: 4px;
+    font-family: var(--sans);
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  /* Add-ons table */
+  .addon-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 24px;
+    font-size: 10.5px;
+  }
+  .addon-table th {
+    font-family: var(--sans);
+    font-weight: 500;
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--forest-700);
+    color: var(--forest-700);
+    font-size: 9px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+  }
+  .addon-table th.num { text-align: right; }
+  .addon-table th.family-h { color: var(--honey); }
+  .addon-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid rgba(46, 74, 42, 0.12);
+    color: var(--ink);
+  }
+  .addon-table td.num {
+    text-align: right;
+    font-family: var(--display);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--forest-800);
+  }
+  .addon-table td.num.family { color: var(--honey); }
+  .addon-table td:first-child {
+    font-family: var(--display);
+    font-size: 0.92rem;
+    font-weight: 400;
+    color: var(--forest-800);
+  }
+  .addon-table tr:last-child td { border-bottom: none; }
+
+  /* Tier columns intro */
+  .three-col {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-top: 28px;
+  }
+  .three-col .col {
+    border-top: 1px solid rgba(46, 74, 42, 0.25);
+    padding: 16px 6px 6px;
+  }
+  .three-col .col h4 {
+    font-family: var(--display);
+    font-size: 1.2rem;
+    margin: 0 0 8px;
+    color: var(--forest-800);
+    font-weight: 500;
+    font-variation-settings: 'opsz' 144;
+  }
+  .three-col .col.family h4 { color: var(--honey); }
+  .three-col .col p {
+    font-size: 10px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .three-col .col .who {
+    font-size: 9px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--forest-700);
+    opacity: 0.7;
+    margin-bottom: 4px;
+  }
+
+  /* How-it-works numbered list */
+  .terms {
+    counter-reset: terms;
+    list-style: none;
+    padding: 0;
+    margin: 28px 0 0;
+  }
+  .terms li {
+    counter-increment: terms;
+    display: grid;
+    grid-template-columns: 0.5in 1fr;
+    gap: 18px;
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(46, 74, 42, 0.12);
+  }
+  .terms li::before {
+    content: counter(terms, decimal-leading-zero);
+    font-family: var(--display);
+    font-size: 1.6rem;
+    color: var(--honey);
+    font-weight: 400;
+    line-height: 1;
+    font-variation-settings: 'opsz' 144;
+  }
+  .terms li h5 {
+    font-family: var(--display);
+    font-size: 1.05rem;
+    margin: 0 0 6px;
+    color: var(--forest-800);
+    font-weight: 500;
+  }
+  .terms li p {
+    font-size: 10.5px;
+    color: var(--ink-soft);
+    margin: 0;
+    max-width: 5.5in;
+  }
+  .terms li:last-child { border-bottom: none; }
+
+  /* Closing */
+  .closing-stack {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(11in - 1.55in);
+    text-align: center;
+  }
+  .closing-stack .mark {
+    font-family: var(--display);
+    font-size: 5rem;
+    color: var(--forest-700);
+    line-height: 1;
+    margin: 0 0 28px;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    font-variation-settings: 'opsz' 144;
+  }
+  .closing-stack h2 {
+    font-family: var(--display);
+    font-size: 2.4rem;
+    font-weight: 300;
+    color: var(--forest-800);
+    margin: 0 0 6px;
+    font-variation-settings: 'opsz' 144;
+  }
+  .closing-stack h2 em { font-style: italic; color: var(--honey); }
+  .closing-stack .tag {
+    font-size: 10px;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--forest-700);
+    opacity: 0.7;
+    margin-bottom: 56px;
+  }
+  .closing-stack .contact {
+    border-top: 1px solid rgba(46, 74, 42, 0.25);
+    border-bottom: 1px solid rgba(46, 74, 42, 0.25);
+    padding: 28px 0;
+    width: 4.5in;
+    text-align: center;
+  }
+  .closing-stack .contact a {
+    display: block;
+    font-family: var(--display);
+    font-size: 1.5rem;
+    color: var(--forest-800);
+    text-decoration: none;
+    margin: 4px 0;
+    font-variation-settings: 'opsz' 144;
+  }
+  .closing-stack .contact .row {
+    font-size: 9px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--forest-700);
+    opacity: 0.6;
+    margin-top: 12px;
+  }
+  .closing-stack .signed {
+    margin-top: 56px;
+    font-family: var(--display);
+    font-style: italic;
+    color: var(--ink-soft);
+    font-size: 1rem;
+  }
+
+  /* utility */
+  .row-pad { padding-top: 18px; }
+  .small-caps {
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--forest-700);
+  }
+  .accent-honey { color: var(--honey); }
+
+</style>
+</head>
+<body>
+
+<!-- ============== COVER ============== -->
+<section class="page cover">
+  <div class="cover-eyebrow">Custom Web &amp; Brand &nbsp;·&nbsp; 2026</div>
+
+  <div class="cover-mark">
+    <div class="ring"></div>
+    <div class="ring inner"></div>
+    <div class="ring innermost"></div>
+
+    <svg class="curve-text" viewBox="0 0 400 400">
+      <defs>
+        <path id="cover-ring" d="M200,200 m-180,0 a180,180 0 1,1 360,0 a180,180 0 1,1 -360,0" />
+      </defs>
+      <text fill="#2e4a2a" font-family="Fraunces" font-size="13" letter-spacing="6" opacity="0.75">
+        <textPath href="#cover-ring" startOffset="0">
+          · DESIGN · DEVELOPMENT · MOTION · BRANDING · DESIGN · DEVELOPMENT · MOTION · BRANDING ·
+        </textPath>
+      </text>
+    </svg>
+
+    <div class="monogram">RK</div>
+  </div>
+
+  <div class="cover-bottom">
+    <h1>Custom Web &amp; Brand <em>· Pricing 2026</em></h1>
+    <div class="sub">A working menu, not a contract</div>
+  </div>
+</section>
+
+
+<!-- ============== INTRO ============== -->
+<section class="page">
+  <div class="runner-top">
+    <span class="mono">RK</span>
+    <span>01 · Welcome</span>
+  </div>
+
+  <span class="eyebrow">Welcome</span>
+  <h2 class="section-title">A working menu,<em>not a contract.</em></h2>
+
+  <p class="lede">Three packages, three monthly Care Plans, and a small list of à la carte add-ons. Three columns of pricing on every line, because the rate I charge depends on who you are to me.</p>
+
+  <hr class="hairline" />
+
+  <div class="three-col">
+    <div class="col family">
+      <div class="who">Family</div>
+      <h4>For people I owe my life to.</h4>
+      <p>Spouses, parents, siblings, oldest friends. Lowest rate I can sustain. Locked in for the duration of our work together.</p>
+    </div>
+    <div class="col">
+      <div class="who">Friend</div>
+      <h4>For people I love.</h4>
+      <p>Folks I've broken bread with. A meaningful discount off Standard, in recognition of the relationship. Also locked in.</p>
+    </div>
+    <div class="col">
+      <div class="who">Standard</div>
+      <h4>For everyone else.</h4>
+      <p>The market rate I'd offer a stranger walking in cold. What I quote referrals (with a small "referred by" courtesy off the top).</p>
+    </div>
+  </div>
+
+  <hr class="hairline" />
+
+  <p>A few notes before you read further. Family and Friend rates aren't transferable — anyone you refer pays Standard. All packages include a 30-day "if I haven't delivered what I promised, you don't pay" guarantee. A 50% deposit kicks off any project; balance due on launch. Care Plans are month-to-month, cancel anytime.</p>
+
+  <div class="runner-bottom">
+    <span>RK · Pricing 2026</span>
+    <span>Page 02</span>
+  </div>
+</section>
+
+
+<!-- ============== PACKAGE 1 — STOREFRONT ============== -->
+<section class="page">
+  <div class="runner-top">
+    <span class="mono">RK</span>
+    <span>02 · Packages · Storefront</span>
+  </div>
+
+  <span class="eyebrow">Package · 01</span>
+  <h2 class="section-title">Storefront <em>The custom landing page.</em></h2>
+
+  <div class="tier-row">
+    <div>
+      <p class="tier-tagline">A custom-designed landing page that turns scrolls into leads.</p>
+      <ul class="tier-includes">
+        <li>Custom design and motion (no templates, no Squarespace shells).</li>
+        <li>Mobile-responsive, fast-loading, SEO-ready.</li>
+        <li>Contact form wired directly to your inbox.</li>
+        <li>Hosting setup on a free-tier platform (Netlify or Vercel).</li>
+        <li>Domain configuration on a domain you own.</li>
+        <li>14 days of post-launch tweaks (typos, photo swaps, copy).</li>
+        <li>30-minute handoff call so you're not guessing.</li>
+      </ul>
+    </div>
+
+    <div class="price-card">
+      <span class="badge">— Storefront —</span>
+      <h3>Investment</h3>
+      <div class="row">
+        <span class="label family">Family</span>
+        <span class="price">$500<span class="one-time">flat</span></span>
+      </div>
+      <div class="row">
+        <span class="label">Friend</span>
+        <span class="price">$750<span class="one-time">flat</span></span>
+      </div>
+      <div class="row">
+        <span class="label">Standard</span>
+        <span class="price">$1,500<span class="one-time">flat</span></span>
+      </div>
+    </div>
+  </div>
+
+  <hr class="hairline" />
+  <p><strong style="color: var(--forest-800)">Best for:</strong> a small business that needs one beautiful, working page. A bakery. A wedding photographer. A neighborhood coffee shop. A consultant putting their name on the internet for the first time.</p>
+
+  <div class="runner-bottom">
+    <span>RK · Pricing 2026</span>
+    <span>Page 03</span>
+  </div>
+</section>
+
+
+<!-- ============== PACKAGE 2 — STOREFRONT + FUNNEL ============== -->
+<section class="page">
+  <div class="runner-top">
+    <span class="mono">RK</span>
+    <span>02 · Packages · Storefront + Funnel</span>
+  </div>
+
+  <span class="eyebrow">Package · 02</span>
+  <h2 class="section-title">Storefront + Funnel <em>The lead-capturing version.</em></h2>
+
+  <div class="tier-row">
+    <div>
+      <p class="tier-tagline">Everything in Storefront, plus the systems that turn visitors into a real audience.</p>
+      <ul class="tier-includes">
+        <li>Everything included in the Storefront package.</li>
+        <li>Newsletter platform set up (Mailchimp, Kit, or Buttondown).</li>
+        <li>Three-email welcome sequence written in your voice.</li>
+        <li>Five branded social-media post templates (editable in Canva).</li>
+        <li>Basic analytics: Google Analytics + lead tracking.</li>
+        <li>Instagram bio &amp; link-in-bio optimization.</li>
+        <li>30 days of post-launch tweaks.</li>
+      </ul>
+    </div>
+
+    <div class="price-card">
+      <span class="badge">— Storefront + Funnel —</span>
+      <h3>Investment</h3>
+      <div class="row">
+        <span class="label family">Family</span>
+        <span class="price">$1,200<span class="one-time">flat</span></span>
+      </div>
+      <div class="row">
+        <span class="label">Friend</span>
+        <span class="price">$1,800<span class="one-time">flat</span></span>
+      </div>
+      <div class="row">
+        <span class="label">Standard</span>
+        <span class="price">$2,800<span class="one-time">flat</span></span>
+      </div>
+    </div>
+  </div>
+
+  <hr class="hairline" />
+  <p><strong style="color: var(--forest-800)">Best for:</strong> a business already on Instagram or TikTok that wants to actually own its audience. Anyone who's tired of begging an algorithm for reach and would rather have a list they can email when something matters.</p>
+
+  <div class="runner-bottom">
+    <span>RK · Pricing 2026</span>
+    <span>Page 04</span>
+  </div>
+</section>
+
+
+<!-- ============== PACKAGE 3 — FULL BRAND LIFT ============== -->
+<section class="page">
+  <div class="runner-top">
+    <span class="mono">RK</span>
+    <span>02 · Packages · Full Brand Lift</span>
+  </div>
+
+  <span class="eyebrow">Package · 03</span>
+  <h2 class="section-title">Full Brand Lift <em>The whole scaffolding.</em></h2>
+
+  <div class="tier-row">
+    <div>
+      <p class="tier-tagline">Everything in Funnel, plus the strategy and content kit to actually use it.</p>
+      <ul class="tier-includes">
+        <li>Everything included in Storefront + Funnel.</li>
+        <li>Brand positioning document — audience, voice, messaging pillars.</li>
+        <li>Ten branded social templates + a one-month content calendar with caption ideas.</li>
+        <li>Photo direction and a shot list you can hand a photographer or shoot yourself.</li>
+        <li>Suggested ad creative for paid social (organic-first).</li>
+        <li>60 days of post-launch tweaks.</li>
+        <li>Three 30-minute strategy check-ins over the first 90 days.</li>
+      </ul>
+    </div>
+
+    <div class="price-card">
+      <span class="badge">— Full Brand Lift —</span>
+      <h3>Investment</h3>
+      <div class="row">
+        <span class="label family">Family</span>
+        <span class="price">$2,500<span class="one-time">flat</span></span>
+      </div>
+      <div class="row">
+        <span class="label">Friend</span>
+        <span class="price">$3,200<span class="one-time">flat</span></span>
+      </div>
+      <div class="row">
+        <span class="label">Standard</span>
+        <span class="price">$4,500<span class="one-time">flat</span></span>
+      </div>
+    </div>
+  </div>
+
+  <hr class="hairline" />
+  <p><strong style="color: var(--forest-800)">Best for:</strong> a serious operator launching, rebranding, or rebooting. Someone who wants the page, the funnel, and a roadmap for what to post for the next quarter without needing to figure it out themselves.</p>
+
+  <div class="runner-bottom">
+    <span>RK · Pricing 2026</span>
+    <span>Page 05</span>
+  </div>
+</section>
+
+
+<!-- ============== CARE PLANS ============== -->
+<section class="page">
+  <div class="runner-top">
+    <span class="mono">RK</span>
+    <span>03 · Care Plans</span>
+  </div>
+
+  <span class="eyebrow">Care Plans · monthly</span>
+  <h2 class="section-title">After launch, <em>the site needs care.</em></h2>
+
+  <p class="lede">Sites aren't set-and-forget. Browsers update, photos go stale, dependencies break. Care Plans are how I stay involved without being on call. Optional, cancel anytime.</p>
+
+  <div class="care-grid">
+
+    <div class="care-card">
+      <div class="name">Bronze</div>
+      <p class="blurb">The "don't think about it" plan. Hosting peace of mind plus a small budget for monthly edits.</p>
+      <ul class="features">
+        <li>Hosting &amp; uptime monitoring</li>
+        <li>Security &amp; dependency updates</li>
+        <li>~1 hour of edits per month</li>
+        <li>Email response within 1 business day</li>
+      </ul>
+      <div class="price-row">
+        <span class="lbl family">Family</span>
+        <span class="p">$49<span class="mo">/mo</span></span>
+      </div>
+      <div class="price-row">
+        <span class="lbl">Friend</span>
+        <span class="p">$79<span class="mo">/mo</span></span>
+      </div>
+      <div class="price-row">
+        <span class="lbl">Standard</span>
+        <span class="p">$99<span class="mo">/mo</span></span>
+      </div>
+    </div>
+
+    <div class="care-card">
+      <div class="name">Silver</div>
+      <p class="blurb">For businesses that want their site to grow alongside them, with content swaps and a real newsletter.</p>
+      <ul class="features">
+        <li>Everything in Bronze</li>
+        <li>1 newsletter campaign sent / month</li>
+        <li>Monthly content swap (new photos)</li>
+        <li>Basic analytics digest each month</li>
+        <li>30-min monthly check-in call</li>
+      </ul>
+      <div class="price-row">
+        <span class="lbl family">Family</span>
+        <span class="p">$129<span class="mo">/mo</span></span>
+      </div>
+      <div class="price-row">
+        <span class="lbl">Friend</span>
+        <span class="p">$199<span class="mo">/mo</span></span>
+      </div>
+      <div class="price-row">
+        <span class="lbl">Standard</span>
+        <span class="p">$249<span class="mo">/mo</span></span>
+      </div>
+    </div>
+
+    <div class="care-card gold">
+      <div class="name">Gold</div>
+      <p class="blurb">A near-fractional CMO. I run the social rotation, write the campaigns, and we strategize quarterly.</p>
+      <ul class="features">
+        <li>Everything in Silver</li>
+        <li>4 social posts created &amp; scheduled / mo</li>
+        <li>Quarterly strategy session</li>
+        <li>Priority response (same business day)</li>
+        <li>1 ad creative variant / month</li>
+      </ul>
+      <div class="price-row">
+        <span class="lbl family">Family</span>
+        <span class="p">$299<span class="mo">/mo</span></span>
+      </div>
+      <div class="price-row">
+        <span class="lbl">Friend</span>
+        <span class="p">$399<span class="mo">/mo</span></span>
+      </div>
+      <div class="price-row">
+        <span class="lbl">Standard</span>
+        <span class="p">$499<span class="mo">/mo</span></span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="runner-bottom">
+    <span>RK · Pricing 2026</span>
+    <span>Page 06</span>
+  </div>
+</section>
+
+
+<!-- ============== ADD-ONS ============== -->
+<section class="page">
+  <div class="runner-top">
+    <span class="mono">RK</span>
+    <span>04 · À la carte</span>
+  </div>
+
+  <span class="eyebrow">À la carte · add-ons</span>
+  <h2 class="section-title">Anything else you need <em>added to any package.</em></h2>
+
+  <p class="lede">A short menu of common extras. Add to any package or buy stand-alone. Same Family / Friend / Standard structure.</p>
+
+  <table class="addon-table">
+    <thead>
+      <tr>
+        <th>Add-on</th>
+        <th class="num family-h">Family</th>
+        <th class="num">Friend</th>
+        <th class="num">Standard</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Extra landing page <span class="small-caps" style="opacity:0.6">services / shop / etc.</span></td>
+        <td class="num family">$300</td>
+        <td class="num">$450</td>
+        <td class="num">$600</td>
+      </tr>
+      <tr>
+        <td>Logo refresh</td>
+        <td class="num family">$300</td>
+        <td class="num">$400</td>
+        <td class="num">$500</td>
+      </tr>
+      <tr>
+        <td>New logo design <span class="small-caps" style="opacity:0.6">3 concepts + revisions</span></td>
+        <td class="num family">$500</td>
+        <td class="num">$700</td>
+        <td class="num">$1,000</td>
+      </tr>
+      <tr>
+        <td>Domain &amp; email forwarding setup</td>
+        <td class="num family">$50</td>
+        <td class="num">$100</td>
+        <td class="num">$150</td>
+      </tr>
+      <tr>
+        <td>Newsletter campaign written <span class="small-caps" style="opacity:0.6">per email</span></td>
+        <td class="num family">$75</td>
+        <td class="num">$115</td>
+        <td class="num">$150</td>
+      </tr>
+      <tr>
+        <td>Photo retouch batch <span class="small-caps" style="opacity:0.6">up to 20 photos</span></td>
+        <td class="num family">$100</td>
+        <td class="num">$150</td>
+        <td class="num">$200</td>
+      </tr>
+      <tr>
+        <td>Hourly work <span class="small-caps" style="opacity:0.6">outside support window</span></td>
+        <td class="num family">$45<span style="font-family:var(--sans);font-size:8px;letter-spacing:0.22em;color:var(--ink-soft);margin-left:4px;">/HR</span></td>
+        <td class="num">$70<span style="font-family:var(--sans);font-size:8px;letter-spacing:0.22em;color:var(--ink-soft);margin-left:4px;">/HR</span></td>
+        <td class="num">$95<span style="font-family:var(--sans);font-size:8px;letter-spacing:0.22em;color:var(--ink-soft);margin-left:4px;">/HR</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr class="hairline" />
+  <p>Don't see what you need? Send a message. If it's web, brand, content, or motion-shaped, the answer is probably yes.</p>
+
+  <div class="runner-bottom">
+    <span>RK · Pricing 2026</span>
+    <span>Page 07</span>
+  </div>
+</section>
+
+
+<!-- ============== HOW THIS WORKS ============== -->
+<section class="page">
+  <div class="runner-top">
+    <span class="mono">RK</span>
+    <span>05 · How this works</span>
+  </div>
+
+  <span class="eyebrow">How this works</span>
+  <h2 class="section-title">The fine print, <em>without the fine print.</em></h2>
+
+  <ol class="terms">
+    <li>
+      <div>
+        <h5>Family &amp; Friend rates are personal.</h5>
+        <p>They're locked in for the duration of our work together — meaning I won't quietly raise them on you. They aren't transferable to people you refer; anyone you send my way pays the Standard rate (with a small "referred by you" courtesy discount on top).</p>
+      </div>
+    </li>
+    <li>
+      <div>
+        <h5>Referral kickback.</h5>
+        <p>Every paying client you send me earns you a free month of your current Care Plan. Three referrals is three months of your site fully covered. Six is half a year. It's how I say thank you for the trust.</p>
+      </div>
+    </li>
+    <li>
+      <div>
+        <h5>The 30-day guarantee.</h5>
+        <p>If at the end of your project I haven't delivered what I promised, you don't pay the balance. No legal-speak, no escape hatches. I'd rather eat the loss than have your name attached to work I'm not proud of.</p>
+      </div>
+    </li>
+    <li>
+      <div>
+        <h5>Payments &amp; timing.</h5>
+        <p>50% deposit kicks off any package; balance due on launch. Care Plans are month-to-month, cancel any time with 14 days notice. Hourly work and add-ons are invoiced after delivery. I send invoices through Stripe — credit card, ACH, all the usual.</p>
+      </div>
+    </li>
+    <li>
+      <div>
+        <h5>Ownership.</h5>
+        <p>You own your domain, your content, your site, and your brand assets. I keep the right to mention the project in my portfolio and case studies, unless you'd rather I didn't.</p>
+      </div>
+    </li>
+  </ol>
+
+  <div class="runner-bottom">
+    <span>RK · Pricing 2026</span>
+    <span>Page 08</span>
+  </div>
+</section>
+
+
+<!-- ============== CLOSING ============== -->
+<section class="page">
+  <div class="closing-stack">
+    <div class="mark">RK</div>
+    <h2>Let's make <em>something good.</em></h2>
+    <div class="tag">Web · Brand · Motion</div>
+
+    <div class="contact">
+      <div class="row">Get in touch</div>
+      <a href="mailto:rykane89@gmail.com">rykane89@gmail.com</a>
+      <a href="tel:+12678109298">267.810.9298</a>
+    </div>
+
+    <div class="signed">— RK · Spring 2026</div>
+  </div>
+
+  <div class="runner-bottom">
+    <span>RK · Pricing 2026</span>
+    <span>Page 09</span>
+  </div>
+</section>
+
+</body>
+</html>

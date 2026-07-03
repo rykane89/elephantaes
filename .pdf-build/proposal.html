@@ -1,0 +1,1538 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Elephantaes · Phase 2 · Online Ordering Proposal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..900,0..100,0..1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  @page { size: Letter; margin: 0; }
+
+  :root {
+    --cream-50: #fbf6e2;
+    --cream-100: #f8f0d2;
+    --cream-200: #f5ebc8;
+    --cream-300: #ecdfae;
+    --line: #e3d6ad;
+
+    --forest-700: #2e4a2a;
+    --forest-800: #1f3219;
+    --forest-900: #142010;
+
+    --honey: #c9985c;
+    --honey-soft: #e0b97b;
+
+    --ink: #1a2415;
+    --ink-soft: #4a5546;
+
+    --display: 'Fraunces', 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Inter', -apple-system, system-ui, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: var(--sans);
+    color: var(--ink);
+    background: var(--cream-100);
+    -webkit-font-smoothing: antialiased;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  .page {
+    width: 8.5in;
+    height: 11in;
+    page-break-after: always;
+    position: relative;
+    overflow: hidden;
+    padding: 0.85in 0.85in 0.7in;
+    background:
+      radial-gradient(900px 500px at 90% -10%, rgba(201, 152, 92, 0.18), transparent 60%),
+      radial-gradient(700px 400px at -10% 110%, rgba(46, 74, 42, 0.10), transparent 60%),
+      var(--cream-100);
+  }
+  .page:last-of-type { page-break-after: auto; }
+
+  .page::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.4;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.18 0 0 0 0 0.29 0 0 0 0 0.16 0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+
+  .runner-top, .runner-bottom {
+    position: absolute;
+    left: 0.85in;
+    right: 0.85in;
+    color: var(--forest-700);
+    opacity: 0.6;
+    font-size: 9px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .runner-top { top: 0.5in; }
+  .runner-bottom { bottom: 0.4in; }
+
+  .runner-top .mono, .runner-bottom .mono {
+    font-family: var(--display);
+    font-weight: 600;
+    font-style: italic;
+    font-size: 16px;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    color: var(--forest-700);
+    opacity: 1;
+  }
+
+  /* ========== Cover ========== */
+
+  .cover-eyebrow {
+    position: absolute;
+    top: 0.7in;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.6em;
+    align-items: center;
+    color: var(--forest-700);
+    opacity: 0.7;
+    font-size: 10px;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+  }
+  .cover-eyebrow::before, .cover-eyebrow::after {
+    content: "";
+    width: 28px;
+    height: 1px;
+    background: var(--forest-700);
+    opacity: 0.4;
+  }
+
+  .cover-stack {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -55%);
+    text-align: center;
+    width: 6.5in;
+  }
+
+  .cover-x {
+    font-family: var(--display);
+    font-size: 1.2rem;
+    color: var(--forest-700);
+    font-style: italic;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    margin-bottom: 16px;
+  }
+
+  .cover-stack h1 {
+    font-family: var(--display);
+    font-weight: 300;
+    font-size: 4.5rem;
+    color: var(--forest-800);
+    letter-spacing: -0.02em;
+    margin: 0 0 12px;
+    line-height: 0.95;
+    font-variation-settings: 'opsz' 144, 'SOFT' 100;
+  }
+  .cover-stack h1 em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--honey);
+    display: block;
+  }
+
+  .cover-stack .subtitle {
+    font-family: var(--display);
+    font-size: 1.15rem;
+    color: var(--forest-700);
+    font-style: italic;
+    font-weight: 400;
+    margin: 24px 0 32px;
+    font-variation-settings: 'opsz' 72;
+  }
+
+  .cover-divider {
+    width: 60px;
+    height: 1px;
+    background: var(--forest-700);
+    opacity: 0.4;
+    margin: 0 auto 24px;
+  }
+
+  .cover-stack .meta {
+    font-size: 10px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--forest-700);
+    opacity: 0.7;
+    line-height: 2;
+  }
+  .cover-stack .meta strong {
+    font-weight: 500;
+    color: var(--forest-800);
+  }
+
+  .cover-bottom {
+    position: absolute;
+    bottom: 0.7in;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 10px;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--forest-700);
+    opacity: 0.7;
+  }
+  .cover-bottom .rk {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 600;
+    font-size: 18px;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    color: var(--forest-700);
+    opacity: 1;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  /* ========== Generic page chrome ========== */
+
+  h2.section-title {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: 2.8rem;
+    color: var(--forest-800);
+    letter-spacing: -0.015em;
+    margin: 0;
+    line-height: 1.05;
+    font-variation-settings: 'opsz' 144, 'SOFT' 100;
+  }
+  h2.section-title em {
+    font-style: italic;
+    color: var(--forest-700);
+    font-weight: 300;
+    display: block;
+  }
+  .eyebrow {
+    color: var(--forest-700);
+    opacity: 0.75;
+    font-size: 10px;
+    letter-spacing: 0.36em;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6em;
+    margin-bottom: 24px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 28px;
+    height: 1px;
+    background: var(--forest-700);
+    opacity: 0.5;
+  }
+  .lede {
+    font-family: var(--display);
+    font-size: 1.15rem;
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1.45;
+    font-variation-settings: 'opsz' 72;
+    margin: 24px 0 0;
+    max-width: 5.6in;
+  }
+
+  p {
+    color: var(--ink-soft);
+    font-size: 11px;
+    line-height: 1.6;
+    margin: 0 0 12px;
+    max-width: 5.6in;
+  }
+
+  hr.hairline {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--forest-700), transparent);
+    opacity: 0.25;
+    margin: 24px 0;
+  }
+
+  /* Recap delivered list */
+  .delivered {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px 32px;
+    margin-top: 28px;
+  }
+  .delivered .item {
+    border-left: 1px solid rgba(46, 74, 42, 0.25);
+    padding-left: 16px;
+  }
+  .delivered .item h4 {
+    font-family: var(--display);
+    font-size: 1rem;
+    margin: 0 0 4px;
+    color: var(--forest-800);
+    font-weight: 500;
+  }
+  .delivered .item p {
+    font-size: 10px;
+    margin: 0;
+    color: var(--ink-soft);
+  }
+
+  /* Path / tier card */
+  .path-row {
+    display: grid;
+    grid-template-columns: 1fr 2.6in;
+    gap: 0.4in;
+    align-items: start;
+    margin-top: 24px;
+  }
+  .path-name {
+    font-family: var(--display);
+    font-size: 2.2rem;
+    color: var(--forest-800);
+    line-height: 1;
+    margin: 0 0 6px;
+    font-weight: 400;
+    font-variation-settings: 'opsz' 144;
+    letter-spacing: -0.015em;
+  }
+  .path-name em {
+    font-style: italic;
+    color: var(--honey);
+    font-weight: 300;
+  }
+  .path-tagline {
+    font-family: var(--display);
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--forest-700);
+    margin: 0 0 16px;
+    font-weight: 300;
+  }
+  .path-includes {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .path-includes li {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 6px 0;
+    border-bottom: 1px dashed rgba(46, 74, 42, 0.15);
+    font-size: 10.5px;
+    color: var(--ink);
+    line-height: 1.45;
+  }
+  .path-includes li:last-child { border-bottom: none; }
+  .path-includes li::before {
+    content: "";
+    flex-shrink: 0;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--forest-700);
+    margin-top: 6px;
+  }
+
+  .price-card {
+    border: 1px solid rgba(46, 74, 42, 0.18);
+    background: rgba(248, 240, 210, 0.6);
+    padding: 22px 22px 18px;
+    border-radius: 14px;
+    position: relative;
+  }
+  .price-card.recommended {
+    border-color: rgba(201, 152, 92, 0.45);
+    background: rgba(201, 152, 92, 0.08);
+  }
+  .price-card .badge {
+    display: inline-block;
+    color: var(--honey);
+    font-size: 9px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  .price-card.recommended .badge {
+    background: var(--honey);
+    color: var(--forest-900);
+    padding: 3px 10px;
+    border-radius: 999px;
+  }
+  .price-card h3 {
+    font-family: var(--display);
+    font-size: 0.85rem;
+    margin: 0 0 12px;
+    color: var(--forest-800);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .price-card .row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(46, 74, 42, 0.10);
+  }
+  .price-card .row:last-of-type { border-bottom: none; }
+  .price-card .row .label {
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--forest-700);
+    opacity: 0.85;
+  }
+  .price-card .row .label.family { color: var(--honey); opacity: 1; font-weight: 600; }
+  .price-card .row .price {
+    font-family: var(--display);
+    font-size: 1.3rem;
+    color: var(--forest-800);
+    font-weight: 500;
+  }
+  .price-card .row .price.family { color: var(--honey); }
+  .price-card .row .price .one-time {
+    font-size: 8px;
+    letter-spacing: 0.22em;
+    color: var(--ink-soft);
+    margin-left: 6px;
+    font-family: var(--sans);
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+  .price-card .timeline {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(46, 74, 42, 0.18);
+    font-size: 10px;
+    color: var(--ink-soft);
+    line-height: 1.45;
+  }
+  .price-card .timeline strong {
+    color: var(--forest-800);
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .best-for {
+    margin-top: 18px;
+    padding: 14px 16px;
+    border-radius: 10px;
+    background: rgba(46, 74, 42, 0.05);
+    border-left: 2px solid var(--honey);
+    font-size: 10.5px;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+  .best-for strong {
+    color: var(--forest-800);
+    font-weight: 500;
+  }
+
+  /* Discovery questions */
+  .questions {
+    counter-reset: q;
+    list-style: none;
+    padding: 0;
+    margin: 18px 0 0;
+  }
+  .questions li {
+    counter-increment: q;
+    display: grid;
+    grid-template-columns: 0.45in 1fr;
+    gap: 14px;
+    padding: 9px 0;
+    border-bottom: 1px solid rgba(46, 74, 42, 0.12);
+  }
+  .questions li::before {
+    content: counter(q, decimal-leading-zero);
+    font-family: var(--display);
+    font-size: 1.2rem;
+    color: var(--honey);
+    font-weight: 400;
+    line-height: 1;
+    font-variation-settings: 'opsz' 144;
+  }
+  .questions li .q-text {
+    font-family: var(--display);
+    font-size: 0.92rem;
+    color: var(--forest-800);
+    font-weight: 400;
+    line-height: 1.35;
+  }
+  .questions li .q-hint {
+    font-size: 9px;
+    color: var(--ink-soft);
+    margin-top: 3px;
+    line-height: 1.4;
+    font-style: italic;
+  }
+  .questions li:last-child { border-bottom: none; }
+
+  /* Timeline */
+  .timeline-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-top: 24px;
+  }
+  .timeline-grid .step {
+    border-top: 1px solid rgba(46, 74, 42, 0.25);
+    padding: 14px 6px 6px;
+    position: relative;
+  }
+  .timeline-grid .step::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: 0;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--honey);
+    border: 2px solid var(--cream-100);
+  }
+  .timeline-grid .step .when {
+    font-family: var(--display);
+    font-size: 0.95rem;
+    color: var(--forest-800);
+    font-weight: 500;
+    margin: 0 0 4px;
+  }
+  .timeline-grid .step .what {
+    font-size: 9.5px;
+    color: var(--ink-soft);
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  /* Terms list */
+  .terms {
+    counter-reset: terms;
+    list-style: none;
+    padding: 0;
+    margin: 24px 0 0;
+  }
+  .terms li {
+    counter-increment: terms;
+    display: grid;
+    grid-template-columns: 0.45in 1fr;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(46, 74, 42, 0.12);
+  }
+  .terms li::before {
+    content: counter(terms, decimal-leading-zero);
+    font-family: var(--display);
+    font-size: 1.4rem;
+    color: var(--honey);
+    font-weight: 400;
+    line-height: 1;
+    font-variation-settings: 'opsz' 144;
+  }
+  .terms li h5 {
+    font-family: var(--display);
+    font-size: 0.95rem;
+    margin: 0 0 4px;
+    color: var(--forest-800);
+    font-weight: 500;
+  }
+  .terms li p {
+    font-size: 10px;
+    color: var(--ink-soft);
+    margin: 0;
+    line-height: 1.5;
+  }
+  .terms li:last-child { border-bottom: none; }
+
+  /* Sign-off */
+  .signoff {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-height: calc(11in - 1.55in);
+    justify-content: center;
+  }
+  .signoff h2 {
+    font-family: var(--display);
+    font-size: 3rem;
+    font-weight: 300;
+    color: var(--forest-800);
+    margin: 0 0 8px;
+    font-variation-settings: 'opsz' 144;
+    line-height: 1.05;
+  }
+  .signoff h2 em {
+    font-style: italic;
+    color: var(--honey);
+    display: block;
+  }
+  .signoff .pre {
+    font-size: 10px;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--forest-700);
+    opacity: 0.7;
+    margin-bottom: 24px;
+  }
+  .signoff .reply {
+    border-top: 1px solid rgba(46, 74, 42, 0.25);
+    border-bottom: 1px solid rgba(46, 74, 42, 0.25);
+    padding: 28px 0;
+    width: 5in;
+    margin: 32px 0;
+  }
+  .signoff .reply .row {
+    text-align: left;
+    padding: 6px 0;
+    color: var(--ink);
+    font-size: 11px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .signoff .reply .row strong {
+    font-family: var(--display);
+    font-weight: 500;
+    color: var(--forest-800);
+    font-size: 14px;
+    width: 1in;
+    flex-shrink: 0;
+  }
+  .signoff .contact {
+    font-size: 10px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--forest-700);
+    opacity: 0.7;
+    margin-top: 16px;
+  }
+  .signoff .contact a {
+    color: var(--forest-800);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .signoff .signed {
+    margin-top: 32px;
+    font-family: var(--display);
+    font-style: italic;
+    color: var(--ink-soft);
+    font-size: 1rem;
+  }
+
+  /* Quote / Pull box */
+  .pullbox {
+    border: 1px solid rgba(46, 74, 42, 0.18);
+    background: rgba(248, 240, 210, 0.5);
+    padding: 22px 26px;
+    border-radius: 14px;
+    margin: 28px 0;
+    position: relative;
+  }
+  .pullbox::before {
+    content: "“";
+    position: absolute;
+    top: 4px;
+    left: 18px;
+    font-family: var(--display);
+    color: var(--honey);
+    font-size: 3.2rem;
+    line-height: 1;
+    font-weight: 500;
+    opacity: 0.4;
+  }
+  .pullbox p {
+    font-family: var(--display);
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--ink);
+    line-height: 1.5;
+    margin: 0;
+    padding-left: 28px;
+    max-width: 100%;
+  }
+  .pullbox cite {
+    display: block;
+    font-style: normal;
+    font-size: 9px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--forest-700);
+    opacity: 0.7;
+    margin-top: 12px;
+    padding-left: 28px;
+  }
+
+  /* opportunity stack */
+  .stack {
+    margin-top: 28px;
+  }
+  .stack .row {
+    display: grid;
+    grid-template-columns: 0.7in 1fr;
+    gap: 20px;
+    padding: 14px 0;
+    border-top: 1px solid rgba(46, 74, 42, 0.15);
+    align-items: start;
+  }
+  .stack .row:last-child { border-bottom: 1px solid rgba(46, 74, 42, 0.15); }
+  .stack .row .num {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.6rem;
+    color: var(--honey);
+    line-height: 1;
+    font-variation-settings: 'opsz' 144;
+  }
+  .stack .row h4 {
+    font-family: var(--display);
+    font-size: 1.05rem;
+    margin: 0 0 4px;
+    color: var(--forest-800);
+    font-weight: 500;
+  }
+  .stack .row p {
+    font-size: 10.5px;
+    color: var(--ink-soft);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* helpers */
+  .small-caps {
+    font-size: 9.5px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--forest-700);
+  }
+
+  /* ========== Phasing strategy page ========== */
+
+  /* Tighter chrome on this dense page */
+  .page.dense { padding: 0.7in 0.85in 0.6in; }
+  .page.dense h2.section-title { font-size: 2.3rem; line-height: 1.05; }
+  .page.dense .lede { font-size: 1.05rem; margin-top: 18px; line-height: 1.4; }
+
+  .reasons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 22px;
+  }
+  .reasons .card {
+    border-top: 2px solid var(--honey);
+    padding: 12px 4px 4px;
+  }
+  .reasons .card .num {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--honey);
+    margin-bottom: 4px;
+    font-weight: 500;
+  }
+  .reasons .card h4 {
+    font-family: var(--display);
+    font-size: 1.05rem;
+    margin: 0 0 6px;
+    color: var(--forest-800);
+    font-weight: 500;
+    line-height: 1.2;
+  }
+  .reasons .card p {
+    font-size: 9.5px;
+    color: var(--ink-soft);
+    margin: 0;
+    line-height: 1.45;
+  }
+
+  .phases {
+    margin-top: 18px;
+  }
+  .phase {
+    display: grid;
+    grid-template-columns: 1.2in 1fr 1.4in;
+    gap: 18px;
+    padding: 13px 0;
+    border-top: 1px solid rgba(46, 74, 42, 0.18);
+    align-items: start;
+  }
+  .phase:last-child { border-bottom: 1px solid rgba(46, 74, 42, 0.18); }
+  .phase .when {
+    position: relative;
+    padding-left: 16px;
+  }
+  .phase .when::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 5px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--honey);
+  }
+  .phase .when .label {
+    font-size: 8.5px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--forest-700);
+    opacity: 0.7;
+    display: block;
+  }
+  .phase .when .roman {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.4rem;
+    color: var(--forest-800);
+    line-height: 1;
+    margin-top: 2px;
+  }
+  .phase .when .span {
+    font-size: 9px;
+    color: var(--ink-soft);
+    margin-top: 3px;
+    font-style: italic;
+  }
+  .phase .body h4 {
+    font-family: var(--display);
+    font-size: 1.05rem;
+    margin: 0 0 4px;
+    color: var(--forest-800);
+    font-weight: 500;
+  }
+  .phase .body p {
+    font-size: 9.5px;
+    color: var(--ink-soft);
+    margin: 0;
+    line-height: 1.45;
+  }
+  .phase .cost {
+    font-family: var(--display);
+    text-align: right;
+  }
+  .phase .cost .amount {
+    font-size: 1.4rem;
+    color: var(--forest-800);
+    font-weight: 500;
+    line-height: 1;
+    font-variation-settings: 'opsz' 144;
+  }
+  .phase .cost .amount.honey { color: var(--honey); }
+  .phase .cost .amount.zero { color: var(--ink-soft); opacity: 0.7; font-weight: 300; }
+  .phase .cost .qual {
+    font-size: 8.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--forest-700);
+    opacity: 0.7;
+    margin-top: 5px;
+    font-family: var(--sans);
+    font-weight: 400;
+  }
+
+  .math-row {
+    margin-top: 18px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .math-row .col {
+    border: 1px solid rgba(46, 74, 42, 0.18);
+    background: rgba(248, 240, 210, 0.5);
+    padding: 14px 18px;
+    border-radius: 12px;
+  }
+  .math-row .col.recommended {
+    border-color: rgba(201, 152, 92, 0.45);
+    background: rgba(201, 152, 92, 0.08);
+  }
+  .math-row .col h5 {
+    font-size: 8.5px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--forest-700);
+    margin: 0 0 6px;
+    font-weight: 500;
+  }
+  .math-row .col h5.honey { color: var(--honey); }
+  .math-row .col .total {
+    font-family: var(--display);
+    font-size: 1.65rem;
+    color: var(--forest-800);
+    font-weight: 500;
+    line-height: 1;
+    margin: 0 0 4px;
+  }
+  .math-row .col .total.honey { color: var(--honey); }
+  .math-row .col .breakdown {
+    font-size: 9.5px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    margin-top: 6px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ============== COVER ============== -->
+<section class="page">
+  <div class="cover-eyebrow">Proposal &nbsp;·&nbsp; Phase 02</div>
+
+  <div class="cover-stack">
+    <div class="cover-x">For Alex at Elephantaes</div>
+
+    <h1>Online Ordering<em>& the next chapter.</em></h1>
+
+    <div class="subtitle">Turning the marketing engine into a business engine.</div>
+
+    <div class="cover-divider"></div>
+
+    <div class="meta">
+      <strong>Prepared by RK</strong> &nbsp;·&nbsp; Spring 2026<br/>
+      Three paths · One discovery conversation
+    </div>
+  </div>
+
+  <div class="cover-bottom">
+    <span class="rk">RK</span>
+    Web · Brand · Motion · Philadelphia
+  </div>
+</section>
+
+
+<!-- ============== WHERE WE ARE ============== -->
+<section class="page">
+  <div class="runner-top">
+    <span class="mono">RK</span>
+    <span>01 · Where we are</span>
+  </div>
+
+  <span class="eyebrow">Phase 1 · Complete</span>
+  <h2 class="section-title">A working storefront,<em>already in your hands.</em></h2>
+
+  <p class="lede">Before we talk about what's next, a quick recap of what's already built and live. Phase 1 was the marketing engine. It's done.</p>
+
+  <div class="delivered">
+    <div class="item">
+      <h4>Custom landing page</h4>
+      <p>Designed from scratch — no templates. Mobile-responsive, motion design, fast-loading, SEO-ready.</p>
+    </div>
+    <div class="item">
+      <h4>Tiramisu menu &amp; signatures</h4>
+      <p>Three flavours with real prices. Custom cakes, weddings, cookie boxes. Every section pulled from your real story.</p>
+    </div>
+    <div class="item">
+      <h4>Gallery curated from your IG</h4>
+      <p>Twelve photos chosen from 50+ on the feed. Editorial masonry. Cropped and named for clean URLs.</p>
+    </div>
+    <div class="item">
+      <h4>Story, Journal &amp; Newsletter capture</h4>
+      <p>"Hi, I'm Alex" intro built around your voice. Journal preview ready for the recipes you've been writing.</p>
+    </div>
+    <div class="item">
+      <h4>Inquiry form + lead capture</h4>
+      <p>Custom-cake enquiries land in your email. Newsletter signup ready to wire to a real platform.</p>
+    </div>
+    <div class="item">
+      <h4>Mr Rabbit collab section</h4>
+      <p>Time-limited "Now Showing" banner with the partnership photo. Dismissible when the weekend ends.</p>
+    </div>
+    <div class="item">
+      <h4>Editorial intro animation</h4>
+      <p>Logo-driven curtain reveal that plays once per session. Sets the tone before the page even renders.</p>
+    </div>
+    <div class="item">
+      <h4>Production deploy ready</h4>
+      <p>5.4MB static export. Drag-and-drop to Netlify, ~30 seconds to live URL. Free hosting.</p>
+    </div>
+  </div>
+
+  <div class="pullbox">
+    <p>The site that exists today already does the marketing work. It tells your story, captures leads, and books custom-cake conversations. The question now is whether it should also take orders and money.</p>
+    <cite>— On the table for Sunday</cite>
+  </div>
+
+  <p style="margin-top: 16px; font-size: 10px; color: var(--ink-soft); font-style: italic;">
+    A note on pricing: Phase 1 (marketing site — <strong style="color:var(--forest-800);font-style:normal;">$500 family rate, already agreed</strong>) is complete and separate from what follows. The three paths on the next pages are for <strong style="color:var(--forest-800);font-style:normal;">Phase 2 — online ordering</strong> — and are quoted on top of Phase 1. Total all-in numbers appear on the final page so there's no surprise.
+  </p>
+
+  <div class="runner-bottom">
+    <span>Elephantaes · Phase 2 Proposal</span>
+    <span>Page 02</span>
+  </div>
+</section>
+
+
+<!-- ============== THE OPPORTUNITY ============== -->
+<section class="page">
+  <div class="runner-top">
+    <span class="mono">RK</span>
+    <span>02 · The opportunity</span>
+  </div>
+
+  <span class="eyebrow">The opportunity</span>
+  <h2 class="section-title">What gets unlocked<em>by adding a checkout.</em></h2>
+
+  <p class="lede">Online ordering isn't just convenience. For a small bakery with limited weekend capacity, it changes how the business works.</p>
+
+  <div class="stack">
+    <div class="row">
+      <span class="num">i.</span>
+      <div>
+        <h4>Pre-orders fill the weekend before it starts.</h4>
+        <p>Right now a tiramisu order means a DM thread, a back-and-forth on size and pickup, and a Venmo or Zelle handoff. Each one takes minutes. With a checkout, that's a 30-second customer flow and a confirmed order in your inbox before you've even started baking Friday night.</p>
+      </div>
+    </div>
+    <div class="row">
+      <span class="num">ii.</span>
+      <div>
+        <h4>Capacity stops being a guessing game.</h4>
+        <p>Cap each weekend at the number of tiramisus you can actually make. The site sells out, the message is automatic ("see you next weekend"), and you're never overcommitted at 11pm Saturday night.</p>
+      </div>
+    </div>
+    <div class="row">
+      <span class="num">iii.</span>
+      <div>
+        <h4>The Mr Rabbit model becomes repeatable.</h4>
+        <p>That collab is a wholesale arrangement in disguise. With the right backend, the next coffee shop that wants in places their order through a portal — bulk pricing, net-30 invoicing, all of it. The infrastructure pays for itself the second collab.</p>
+      </div>
+    </div>
+    <div class="row">
+      <span class="num">iv.</span>
+      <div>
+        <h4>The newsletter has something to actually drive to.</h4>
+        <p>Right now "subscribe for updates" is a soft ask. With a shop, every newsletter is a sales tool — "this weekend's flavours are live, three slots left, link below." That's the difference between a list and a list that pays for itself.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="hairline" />
+
+  <p>That said — none of this is necessary. The site as it stands works. This is an upgrade, not a fix. Three paths follow, one of which is "do less." Whichever fits, fits.</p>
+
+  <div class="runner-bottom">
+    <span>Elephantaes · Phase 2 Proposal</span>
+    <span>Page 03</span>
+  </div>
+</section>
+
+
+<!-- ============== PATH 01 — Pre-Order Light ============== -->
+<section class="page">
+  <div class="runner-top">
+    <span class="mono">RK</span>
+    <span>03 · Path · 01</span>
+  </div>
+
+  <span class="eyebrow">Path · 01 · The minimal version</span>
+  <h2 class="section-title">Pre-Order Light <em>Buy buttons, no shop.</em></h2>
+
+  <div class="path-row">
+    <div>
+      <p class="path-tagline">Add a "Buy now" button next to each tiramisu flavour. Customer pays in 30 seconds. You get an email. That's it.</p>
+      <ul class="path-includes">
+        <li>Stripe Buy Buttons embedded next to each tiramisu flavour, sized as a separate price.</li>
+        <li>Pickup window picker (Saturday or Sunday) at checkout.</li>
+        <li>Apple Pay, Google Pay, and Card all accepted out of the box.</li>
+        <li>Email confirmation to you with order details + email confirmation to the customer.</li>
+        <li>Optional weekly inventory cap (e.g., 12 strawberry tiramisus available, sells out automatically).</li>
+        <li>14 days of post-launch tweaks.</li>
+      </ul>
+    </div>
+
+    <div class="price-card">
+      <span class="badge">— Path 01 —</span>
+      <h3>Investment</h3>
+      <div class="row">
+        <span class="label family">Family</span>
+        <span class="price family">$800<span class="one-time">flat</span></span>
+      </div>
+      <div class="row">
+        <span class="label">Friend</span>
+        <span class="price">$1,100<span class="one-time">flat</span></span>
+      </div>
+      <div class="row">
+        <span class="label">Standard</span>
+        <span class="price">$1,800<span class="one-time">flat</span></span>
+      </div>
+      <div class="timeline">
+        <strong>Timeline</strong>
+        Soft launch: 1 week from kickoff.<br/>
+        Full launch: 2 weeks from kickoff.
+      </div>
+    </div>
+  </div>
+
+  <div class="best-for">
+    <strong>Best if:</strong> you want to test the water without committing to a full shop. Tiramisu pre-orders are the obvious win. Custom cakes still go through the inquiry form. Doesn't include any wholesale, subscription, or BNPL — those would come in Path 02 or 03 if needed later.
+  </div>
+
+  <div class="runner-bottom">
+    <span>Elephantaes · Phase 2 Proposal</span>
+    <span>Page 04</span>
+  </div>
+</section>
+
+
+<!-- ============== PATH 02 — Weekend Shop ============== -->
+<section class="page">
+  <div class="runner-top">
+    <span class="mono">RK</span>
+    <span>03 · Path · 02 · Recommended</span>
+  </div>
+
+  <span class="eyebrow">Path · 02 · The recommended version</span>
+  <h2 class="section-title">The Weekend Shop <em>A real bakery storefront.</em></h2>
+
+  <div class="path-row">
+    <div>
+      <p class="path-tagline">A proper /shop page. Browse the week's offerings, pick sizes, pick pickup window, pay. Every part of the order experience designed to match the rest of the brand.</p>
+      <ul class="path-includes">
+        <li>Everything in Path 01.</li>
+        <li>Custom /shop page designed to match the existing aesthetic — product cards, motion, the works.</li>
+        <li>Cart for multi-item orders (a tiramisu + a cookie box + minis).</li>
+        <li>Saturday or Sunday pickup window selector with capacity caps per slot.</li>
+        <li>BNPL payment options: Klarna, Afterpay, Cash App Pay (4-installment) — all handled by Stripe.</li>
+        <li>Airtable-backed menu so you can update items, prices, photos, and availability yourself, no calls to me required.</li>
+        <li>Order admin dashboard (basic) so you can see incoming orders without needing the Stripe app.</li>
+        <li>Customer email confirmation with calendar invite for the pickup window.</li>
+        <li>Inventory sells out automatically — "this weekend is full, see you next" message when capped.</li>
+        <li>30 days of post-launch tweaks.</li>
+      </ul>
+    </div>
+
+    <div class="price-card recommended">
+      <span class="badge">— Recommended —</span>
+      <h3>Investment</h3>
+      <div class="row">
+        <span class="label family">Family</span>
+        <span class="price family">$1,400<span class="one-time">flat</span></span>
+      </div>
+      <div class="row">
+        <span class="label">Friend</span>
+        <span class="price">$2,100<span class="one-time">flat</span></span>
+      </div>
+      <div class="row">
+        <span class="label">Standard</span>
+        <span class="price">$3,200<span class="one-time">flat</span></span>
+      </div>
+      <div class="timeline">
+        <strong>Timeline</strong>
+        Soft launch: 3 weeks from kickoff.<br/>
+        Full launch: 4 weeks from kickoff.
+      </div>
+    </div>
+  </div>
+
+  <div class="best-for">
+    <strong>Best if:</strong> you're already getting more DM orders than feels manageable, or you want this to feel like an actual online bakery rather than a website with a buy button bolted on. The Airtable layer is what makes it sustainable — you can swap "Strawberry" for "Pistachio" yourself in 30 seconds, no developer needed.
+  </div>
+
+  <div class="runner-bottom">
+    <span>Elephantaes · Phase 2 Proposal</span>
+    <span>Page 05</span>
+  </div>
+</section>
+
+
+<!-- ============== PATH 03 — Studio Platform ============== -->
+<section class="page">
+  <div class="runner-top">
+    <span class="mono">RK</span>
+    <span>03 · Path · 03</span>
+  </div>
+
+  <span class="eyebrow">Path · 03 · The full build</span>
+  <h2 class="section-title">Studio Platform <em>Bakery-as-a-business.</em></h2>
+
+  <div class="path-row">
+    <div>
+      <p class="path-tagline">The Weekend Shop plus the rails for everything that comes next. Subscriptions, wholesale partners, customer accounts, loyalty.</p>
+      <ul class="path-includes">
+        <li>Everything in Path 02.</li>
+        <li>Subscription product: "Tiramisu of the Month" or similar — recurring billing handled by Stripe.</li>
+        <li>Wholesale portal: Mr Rabbit (and the next three coffee shops) can log in, place bulk orders, get net-30 invoicing.</li>
+        <li>Customer accounts with order history and saved pickup preferences.</li>
+        <li>Loyalty ledger — "every 6th tiramisu free" or similar, tracked automatically.</li>
+        <li>Referral system tied to the newsletter — share a code, get $5 off, friend gets $5 off.</li>
+        <li>Stripe invoicing for catering / wedding cake balance payments after the deposit.</li>
+        <li>Sales-tax automation for PA pickup orders (Stripe Tax, ~50¢ per transaction).</li>
+        <li>60 days of post-launch tweaks + 3 strategy check-ins over the first 90 days.</li>
+      </ul>
+    </div>
+
+    <div class="price-card">
+      <span class="badge">— Path 03 —</span>
+      <h3>Investment</h3>
+      <div class="row">
+        <span class="label family">Family</span>
+        <span class="price family">$3,000<span class="one-time">flat</span></span>
+      </div>
+      <div class="row">
+        <span class="label">Friend</span>
+        <span class="price">$4,500<span class="one-time">flat</span></span>
+      </div>
+      <div class="row">
+        <span class="label">Standard</span>
+        <span class="price">$6,500<span class="one-time">flat</span></span>
+      </div>
+      <div class="timeline">
+        <strong>Timeline</strong>
+        Soft launch: 5 weeks from kickoff.<br/>
+        Full launch: 6 weeks from kickoff.
+      </div>
+    </div>
+  </div>
+
+  <div class="best-for">
+    <strong>Best if:</strong> you see Elephantaes as a multi-channel brand in 12 months — a few wholesale accounts, a subscription base, repeat customers who want to log in. This is overkill for now if Mr Rabbit is a one-off and you mostly do one-time custom cakes. Easy to build into later if Path 02 fills up.
+  </div>
+
+  <div class="runner-bottom">
+    <span>Elephantaes · Phase 2 Proposal</span>
+    <span>Page 06</span>
+  </div>
+</section>
+
+
+<!-- ============== PHASING STRATEGY ============== -->
+<section class="page dense">
+  <div class="runner-top">
+    <span class="mono">RK</span>
+    <span>04 · The smart play</span>
+  </div>
+
+  <span class="eyebrow">My honest recommendation</span>
+  <h2 class="section-title">The smart play <em>Build to demand, not to imagination.</em></h2>
+
+  <p class="lede">If I were spending my own money, I wouldn't pay for Path 03 today. I'd pay for Path 02, run it two months, then add only what demand actually shows up for. Here's why — and the math.</p>
+
+  <div class="reasons">
+    <div class="card">
+      <div class="num">i.</div>
+      <h4>Validate first.</h4>
+      <p>Subscriptions, wholesale, loyalty — great if anyone uses them. You don't know yet what your customers actually want. Two months of real signal beats six months of guessing.</p>
+    </div>
+    <div class="card">
+      <div class="num">ii.</div>
+      <h4>Cash flow.</h4>
+      <p>$1,400 is easier to find than $3,000 today. Phase III upgrades pay for themselves out of Phase II revenue — you're never out-of-pocket on a feature you can't afford.</p>
+    </div>
+    <div class="card">
+      <div class="num">iii.</div>
+      <h4>Operational sanity.</h4>
+      <p>Running a shop AND a subscription AND a wholesale portal day one is too many new systems for one baker. Master one. Get comfortable. Then layer the next.</p>
+    </div>
+  </div>
+
+  <div class="phases">
+
+    <div class="phase">
+      <div class="when">
+        <span class="label">Phase</span>
+        <div class="roman">I</div>
+        <div class="span">Months 0–1</div>
+      </div>
+      <div class="body">
+        <h4>Path 02 ships. Weekend Shop live.</h4>
+        <p>Tiramisu, cookie boxes, minis online for pre-order. Custom cakes still flow through the inquiry form. BNPL, Apple/Google Pay, capacity caps, Airtable menu — all of it from day one.</p>
+      </div>
+      <div class="cost">
+        <div class="amount honey">$1,400</div>
+        <div class="qual">Family rate · flat</div>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="when">
+        <span class="label">Phase</span>
+        <div class="roman">II</div>
+        <div class="span">Months 2–3</div>
+      </div>
+      <div class="body">
+        <h4>Watch and learn. Build nothing new.</h4>
+        <p>Run the shop. See what sells. Track which DMs ask for things the shop doesn't yet do — subscription? wholesale? gift cards? That's your real roadmap, written by customers. Care Plan keeps the lights on.</p>
+      </div>
+      <div class="cost">
+        <div class="amount">$49<span style="font-size:0.7em;font-weight:300;">/mo</span></div>
+        <div class="qual">Existing Care Plan</div>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="when">
+        <span class="label">Phase</span>
+        <div class="roman">III</div>
+        <div class="span">Months 4–6, à la carte</div>
+      </div>
+      <div class="body">
+        <h4>Add Path 03 features only as proven needed.</h4>
+        <p>Each priced individually, family rate. <strong>Subscription module</strong> $400. <strong>Wholesale portal</strong> $700. <strong>Customer accounts</strong> $300. <strong>Loyalty / referral</strong> $300. One a month, ship as ready, never overcommit.</p>
+      </div>
+      <div class="cost">
+        <div class="amount">$0–$1,700</div>
+        <div class="qual">Pay for what you build</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="math-row">
+    <div class="col">
+      <h5>Path 03 upfront</h5>
+      <div class="total">$3,000</div>
+      <div class="breakdown">All four features in 6 weeks, used or not. Pay full now, hope it all sticks.</div>
+    </div>
+    <div class="col recommended">
+      <h5 class="honey">— Recommended —</h5>
+      <div class="total honey">$1,400 + ?</div>
+      <div class="breakdown"><strong>$1,400 now</strong>, two months of real data, then $0–$1,700 of upgrades. Most clients build half. <strong>Likely landing: $2,100–$2,400, $600+ saved.</strong></div>
+    </div>
+  </div>
+
+  <div class="runner-bottom">
+    <span>Elephantaes · Phase 2 Proposal</span>
+    <span>Page 07</span>
+  </div>
+</section>
+
+
+<!-- ============== DISCOVERY QUESTIONS ============== -->
+<section class="page">
+  <div class="runner-top">
+    <span class="mono">RK</span>
+    <span>05 · How we choose</span>
+  </div>
+
+  <span class="eyebrow">How we choose</span>
+  <h2 class="section-title">Twelve questions, <em>twenty minutes.</em></h2>
+
+  <p class="lede">The right path depends entirely on your answers. We can walk through these together at the meeting — your answers will collapse three paths to one.</p>
+
+  <ol class="questions">
+    <li>
+      <div>
+        <div class="q-text">In a typical week, how many orders do you take? Mostly DMs, mostly word-of-mouth?</div>
+        <div class="q-hint">If the answer is "10+ a week," Path 02 pays for itself fast. If it's "2-3," Path 01 is plenty.</div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="q-text">What's the average order? Is it $14 tiramisus or $200 custom cakes?</div>
+        <div class="q-hint">Higher AOV means BNPL matters less; standing items at $14 means Apple Pay matters a lot.</div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="q-text">What share of orders are standing items vs custom cakes? Roughly.</div>
+        <div class="q-hint">Custom-heavy means the inquiry form already does most of the work. Standing-heavy = real shop.</div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="q-text">Have you ever turned someone away because you ran out of capacity? How often?</div>
+        <div class="q-hint">If yes — capacity caps in the shop are a sanity-saver, not a luxury.</div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="q-text">Have you ever lost an order because the customer ghosted before paying?</div>
+        <div class="q-hint">Online checkout solves this. The order exists when the money does.</div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="q-text">Is Mr Rabbit a one-off, or do you want more wholesale collabs over time?</div>
+        <div class="q-hint">"Yes, more" pushes us toward Path 03's wholesale portal.</div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="q-text">Have you considered a subscription product? "Tiramisu of the Month" or similar?</div>
+        <div class="q-hint">Recurring revenue changes the maths on everything. Path 03 territory.</div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="q-text">Pickup-only forever, or delivery eventually?</div>
+        <div class="q-hint">Affects shipping logic, packaging, time-of-day windows.</div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="q-text">Where do you see this in a year — same scale, 2x, 5x?</div>
+        <div class="q-hint">Build for tomorrow's scale, not today's. Within reason.</div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="q-text">How much time can you put into managing the system each week?</div>
+        <div class="q-hint">If "very little," the Airtable / Care Plan layer becomes essential.</div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="q-text">Do you have an LLC and a separate business bank account?</div>
+        <div class="q-hint">Stripe needs one or the other. We can set this up if you don't.</div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="q-text">Are you registered to charge sales tax in Pennsylvania?</div>
+        <div class="q-hint">Required for online food sales over a certain threshold. We can register you in 30 minutes.</div>
+      </div>
+    </li>
+  </ol>
+
+  <div class="runner-bottom">
+    <span>Elephantaes · Phase 2 Proposal</span>
+    <span>Page 08</span>
+  </div>
+</section>
+
+
+<!-- ============== TIMELINE & TERMS ============== -->
+<section class="page">
+  <div class="runner-top">
+    <span class="mono">RK</span>
+    <span>06 · Timeline &amp; terms</span>
+  </div>
+
+  <span class="eyebrow">Timeline · for the recommended Path 02</span>
+  <h2 class="section-title">Four weeks to live, <em>start to finish.</em></h2>
+
+  <div class="timeline-grid">
+    <div class="step">
+      <div class="when">Week 01</div>
+      <p class="what">Stripe account stand-up. Architecture switch from static export to Netlify with API routes. Airtable schema for the menu.</p>
+    </div>
+    <div class="step">
+      <div class="when">Week 02</div>
+      <p class="what">/shop page design and build. Product cards, cart, pickup picker. Visual review with you mid-week.</p>
+    </div>
+    <div class="step">
+      <div class="when">Week 03</div>
+      <p class="what">Stripe Checkout integration. Webhooks. Order confirmation emails. Soft launch with one tiramisu flavour to live customers.</p>
+    </div>
+    <div class="step">
+      <div class="when">Week 04</div>
+      <p class="what">Full menu live. BNPL + Apple/Google Pay turned on. Final QA. Care Plan upgrade conversation.</p>
+    </div>
+  </div>
+
+  <hr class="hairline" />
+
+  <span class="eyebrow">Terms · the small print, kept small</span>
+
+  <ol class="terms">
+    <li>
+      <div>
+        <h5>Deposit kicks it off.</h5>
+        <p>50% of the chosen package due at sign-off. Balance on full launch. Pay however's easiest — Venmo, Zelle, Cash App, PayPal, Stripe (card or ACH), or a good old-fashioned check. Whatever works for you, works for me.</p>
+      </div>
+    </li>
+    <li>
+      <div>
+        <h5>Scope is the bullet list above.</h5>
+        <p>Anything not on it is $45/hr (family rate) and I'll quote first before starting. No surprise invoices. Common changes mid-build (add a flavour, swap a photo) are included.</p>
+      </div>
+    </li>
+    <li>
+      <div>
+        <h5>Care Plan upgrades when the shop goes live.</h5>
+        <p>Bronze ($49/mo) doesn't cover ongoing inventory checks, weekly menu updates, or order-flow monitoring. Silver ($129/mo, family rate) is the right tier once we're taking real orders. We'll talk about it.</p>
+      </div>
+    </li>
+    <li>
+      <div>
+        <h5>You own everything.</h5>
+        <p>Domain, code, brand assets, customer list, Stripe account, Airtable database. I keep the right to reference the project in my portfolio unless you'd rather I didn't.</p>
+      </div>
+    </li>
+    <li>
+      <div>
+        <h5>Stripe fees are pass-through.</h5>
+        <p>2.9% + 30¢ per card transaction goes directly to Stripe, not me. BNPL is the same flat fee. We can either absorb that or build it into the menu pricing.</p>
+      </div>
+    </li>
+  </ol>
+
+  <div class="runner-bottom">
+    <span>Elephantaes · Phase 2 Proposal</span>
+    <span>Page 09</span>
+  </div>
+</section>
+
+
+<!-- ============== SIGN-OFF ============== -->
+<section class="page">
+  <div class="signoff">
+    <div class="pre">When you're ready</div>
+    <h2>Pick a path, <em>and we begin.</em></h2>
+
+    <div class="reply">
+      <div class="row">
+        <strong>Path 01</strong>
+        <span>"Let's do Pre-Order Light." — <strong style="color:var(--honey)">$1,300 all-in</strong> ($500 site + $800 ordering), live in 2 weeks.</span>
+      </div>
+      <div class="row">
+        <strong>Path 02</strong>
+        <span>"Let's do the Weekend Shop." — <strong style="color:var(--honey)">$1,900 all-in</strong> ($500 site + $1,400 ordering), live in 4 weeks.</span>
+      </div>
+      <div class="row">
+        <strong>Path 03</strong>
+        <span>"Full Studio Platform, please." — <strong style="color:var(--honey)">$3,500 all-in</strong> ($500 site + $3,000 ordering), live in 6 weeks.</span>
+      </div>
+      <div class="row">
+        <strong>Wait</strong>
+        <span>"Let's launch the site for $500 now and revisit ordering in 60 days." — fully fair answer.</span>
+      </div>
+    </div>
+
+    <p style="font-size: 9.5px; color: var(--ink-soft); margin-top: 14px; max-width: 4.5in; text-align: center; line-height: 1.5;">
+      All-in totals exclude the optional Care Plan ($49/mo family rate) and Stripe transaction fees, which are pass-through to the platform.
+    </p>
+
+    <div class="contact">
+      <a href="mailto:rykane89@gmail.com">rykane89@gmail.com</a> &nbsp;·&nbsp; 267.810.9298
+    </div>
+
+    <div class="signed">— RK · Spring 2026</div>
+  </div>
+
+  <div class="runner-bottom">
+    <span>Elephantaes · Phase 2 Proposal</span>
+    <span>Page 10</span>
+  </div>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "elephantaes-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "site", "run", "dev"],
+      "port": 3000
+    },
+    {
+      "name": "pdf-preview",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["--yes", "http-server", ".pdf-build", "-p", "3050", "-c-1", "--silent"],
+      "port": 3050
+    }
+  ]
+}

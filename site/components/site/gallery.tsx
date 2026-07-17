@@ -1,8 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { brand } from "@/lib/content";
-import type { GalleryPhoto } from "@/lib/cms";
+import type { GalleryPhoto, SiteSettings } from "@/lib/cms";
 import { Reveal } from "./reveal";
 import { InstagramIcon } from "./icons";
 
@@ -12,7 +11,7 @@ const ratioClass: Record<"tall" | "square" | "wide", string> = {
   wide: "aspect-[5/4]",
 };
 
-export function Gallery({ photos }: { photos: GalleryPhoto[] }) {
+export function Gallery({ photos, settings }: { photos: GalleryPhoto[]; settings: SiteSettings }) {
   const reduce = useReducedMotion();
 
   return (
@@ -29,14 +28,14 @@ export function Gallery({ photos }: { photos: GalleryPhoto[] }) {
             </h2>
           </div>
           <a
-            href={brand.instagramUrl}
+            href={settings.instagramUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-sm text-forest-700 hover:text-forest-800 transition-colors group"
           >
             <InstagramIcon className="h-4 w-4" />
             <span className="underline decoration-forest-700/30 underline-offset-4 group-hover:decoration-forest-700">
-              @{brand.instagramHandle}
+              @{settings.instagramHandle}
             </span>
           </a>
         </Reveal>
@@ -70,7 +69,7 @@ export function Gallery({ photos }: { photos: GalleryPhoto[] }) {
 
         <Reveal delay={0.1} className="mt-12 flex justify-center">
           <a
-            href={brand.instagramUrl}
+            href={settings.instagramUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-full border border-forest-700/25 px-6 py-3 text-sm text-forest-800 hover:bg-forest-700/5 transition-colors"

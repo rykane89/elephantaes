@@ -1,9 +1,10 @@
 import Image from "next/image";
 import { Mail, Phone } from "lucide-react";
-import { brand, navLinks, pickupHours } from "@/lib/content";
+import { brand, navLinks } from "@/lib/content";
+import type { SiteSettings } from "@/lib/cms";
 import { InstagramIcon } from "./icons";
 
-export function Footer() {
+export function Footer({ settings }: { settings: SiteSettings }) {
   const year = new Date().getFullYear();
   return (
     <footer className="relative bg-forest-800 text-cream-200">
@@ -30,13 +31,13 @@ export function Footer() {
               </div>
             </div>
             <p className="mt-6 max-w-sm text-sm leading-relaxed text-cream-200/80">
-              {brand.city} — custom cakes, weekend tiramisu, weddings by
+              {settings.city} — custom cakes, weekend tiramisu, weddings by
               enquiry. Studio pickup only.
             </p>
 
             <div className="mt-8 flex items-center gap-3">
               <a
-                href={brand.instagramUrl}
+                href={settings.instagramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
@@ -45,14 +46,14 @@ export function Footer() {
                 <InstagramIcon className="h-4 w-4" />
               </a>
               <a
-                href={`tel:${brand.phoneTel}`}
+                href={`tel:${settings.phoneTel}`}
                 aria-label="Phone"
                 className="inline-flex items-center justify-center h-10 w-10 rounded-full border border-cream-100/20 hover:bg-cream-100/10 transition-colors"
               >
                 <Phone className="h-4 w-4" />
               </a>
               <a
-                href={`mailto:${brand.inquiryEmail}`}
+                href={`mailto:${settings.inquiryEmail}`}
                 aria-label="Email"
                 className="inline-flex items-center justify-center h-10 w-10 rounded-full border border-cream-100/20 hover:bg-cream-100/10 transition-colors"
               >
@@ -81,18 +82,18 @@ export function Footer() {
               Talk to the baker
             </h4>
             <a
-              href={`tel:${brand.phoneTel}`}
+              href={`tel:${settings.phoneTel}`}
               className="mt-5 block font-display text-2xl text-cream-100 hover:text-honey transition-colors"
             >
-              {brand.phone}
+              {settings.phone}
             </a>
             <a
-              href={brand.instagramUrl}
+              href={settings.instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="mt-2 inline-flex items-center gap-2 text-sm text-cream-200/80 hover:text-cream-100 transition-colors"
             >
-              <InstagramIcon className="h-4 w-4" /> @{brand.instagramHandle}
+              <InstagramIcon className="h-4 w-4" /> @{settings.instagramHandle}
             </a>
 
             <div className="mt-6 pt-5 border-t border-cream-100/10">
@@ -100,7 +101,7 @@ export function Footer() {
                 Pickup
               </h5>
               <ul className="mt-3 space-y-1 text-sm text-cream-200/80">
-                {pickupHours.map((h) => (
+                {settings.pickupHours.map((h) => (
                   <li key={h.day} className="flex items-baseline gap-2">
                     <span className="font-display text-cream-100">{h.day}</span>
                     <span>· {h.hours}</span>

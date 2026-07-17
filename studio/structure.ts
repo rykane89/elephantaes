@@ -1,7 +1,7 @@
 import type { StructureResolver } from "sanity/structure";
 
-// Sidebar layout for the studio. Collab banner is a singleton (one document,
-// no create/delete), gallery and tiramisu are ordered lists.
+// Sidebar layout for the studio. Singletons (one document, no create/delete)
+// are pinned; gallery, tiramisu, and cards are ordered lists.
 export const structure: StructureResolver = (S) =>
   S.list()
     .title("Site content")
@@ -20,7 +20,30 @@ export const structure: StructureResolver = (S) =>
             .title("Tiramisu flavours")
             .defaultOrdering([{ field: "order", direction: "asc" }])
         ),
+      S.listItem()
+        .title("What we bake (cards)")
+        .child(
+          S.documentTypeList("signatureCard")
+            .title("What we bake")
+            .defaultOrdering([{ field: "order", direction: "asc" }])
+        ),
       S.divider(),
+      S.listItem()
+        .title("The baker (bio)")
+        .child(
+          S.document()
+            .schemaType("storySection")
+            .documentId("storySection")
+            .title("The baker (bio)")
+        ),
+      S.listItem()
+        .title("Journal / newsletter")
+        .child(
+          S.document()
+            .schemaType("journalSection")
+            .documentId("journalSection")
+            .title("Journal / newsletter")
+        ),
       S.listItem()
         .title("Collab banner")
         .child(
@@ -28,5 +51,13 @@ export const structure: StructureResolver = (S) =>
             .schemaType("collabBanner")
             .documentId("collabBanner")
             .title("Collab banner")
+        ),
+      S.listItem()
+        .title("Site settings")
+        .child(
+          S.document()
+            .schemaType("siteSettings")
+            .documentId("siteSettings")
+            .title("Site settings")
         ),
     ]);

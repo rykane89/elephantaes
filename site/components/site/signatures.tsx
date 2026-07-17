@@ -1,10 +1,10 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { signatures } from "@/lib/content";
+import type { SignatureCard } from "@/lib/cms";
 import { Reveal } from "./reveal";
 
-export function Signatures() {
+export function Signatures({ cards }: { cards: SignatureCard[] }) {
   const reduce = useReducedMotion();
 
   return (
@@ -21,7 +21,7 @@ export function Signatures() {
         </Reveal>
 
         <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-          {signatures.map((s, i) => (
+          {cards.map((s, i) => (
             <motion.article
               key={s.title}
               initial={reduce ? false : { opacity: 0, y: 28 }}

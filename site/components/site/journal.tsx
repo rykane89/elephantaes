@@ -3,10 +3,10 @@
 import { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Mail, ArrowRight, Check } from "lucide-react";
-import { latestNewsletter, journalArchive } from "@/lib/content";
+import type { JournalContent } from "@/lib/cms";
 import { Reveal } from "./reveal";
 
-export function Journal() {
+export function Journal({ journal }: { journal: JournalContent }) {
   const reduce = useReducedMotion();
   const [email, setEmail] = useState("");
   const [state, setState] = useState<"idle" | "loading" | "done" | "error">("idle");
@@ -52,31 +52,31 @@ export function Journal() {
                 <div className="md:col-span-2 relative aspect-[4/5] md:aspect-auto overflow-hidden bg-cream-200">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src="/gallery/holiday-cookie-box-closed.jpg"
-                    alt="Latest issue cover — holiday cookie box"
+                    src={journal.cover}
+                    alt={journal.coverAlt}
                     className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1200ms] group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-forest-900/55 to-transparent" />
                   <div className="absolute bottom-4 left-5 text-cream-100">
                     <span className="font-script text-2xl leading-none">latest</span>
                     <span className="block text-[10px] uppercase tracking-[0.22em] mt-1">
-                      {latestNewsletter.issue} · {latestNewsletter.date}
+                      {journal.issue} · {journal.date}
                     </span>
                   </div>
                 </div>
                 <div className="md:col-span-3 p-7 md:p-10 flex flex-col">
                   <h3 className="font-display text-2xl md:text-3xl text-forest-800 leading-snug text-balance">
-                    {latestNewsletter.title}
+                    {journal.title}
                   </h3>
                   <p className="mt-4 text-base leading-relaxed text-ink-soft text-pretty">
-                    {latestNewsletter.excerpt}
+                    {journal.excerpt}
                   </p>
                   <div className="mt-auto pt-8 flex items-center justify-between">
                     <span className="text-[11px] uppercase tracking-[0.22em] text-forest-700/70">
-                      {latestNewsletter.readingTime}
+                      {journal.readingTime}
                     </span>
                     <a
-                      href={latestNewsletter.link}
+                      href={journal.link}
                       className="inline-flex items-center gap-2 text-sm text-forest-700 hover:text-forest-800 transition-colors group/link"
                     >
                       Read the issue
@@ -92,7 +92,7 @@ export function Journal() {
                 From the archive
               </h4>
               <ul className="mt-5 divide-y divide-forest-700/10 border-t border-b border-forest-700/10">
-                {journalArchive.map((a) => (
+                {journal.archive.map((a) => (
                   <li key={a.title}>
                     <a
                       href="#"

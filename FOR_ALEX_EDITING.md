@@ -1,6 +1,6 @@
-# Editing Your Website (for Alex)
+# Editing Your Website (for Alex and Deepak)
 
-Your website has an editor where you can change photos, tiramisu flavours, prices, and the collab banner yourself. Changes go live about 2 minutes after you hit Publish.
+Your website has an editor where you can change photos, tiramisu flavours, prices, your bio, the newsletter section, the collab banner, and your contact info yourselves. Changes go live about 2 minutes after you hit Publish.
 
 ## Logging in
 
@@ -8,7 +8,7 @@ Your website has an editor where you can change photos, tiramisu flavours, price
 2. Sign in with your Google account (the email Ryan invited)
 3. Bookmark it
 
-## The three things you can edit
+## What you can edit
 
 ### Gallery photos
 
@@ -35,10 +35,26 @@ Click **Collab banner**. This is the partnership section (currently Mr Rabbit).
 - **Show on the site** toggle: flip it off when a collab ends and the whole section disappears. Flip it on and fill in the details when a new one starts.
 - Everything is editable: partner name, headline, dates, blurb, the featured list, photo, and the button.
 
+### What we bake (cards)
+
+The four offering cards near the top of the site (Custom Cakes, Tiramisu, Weddings, Cookie Boxes). Edit titles, descriptions, and the small bottom line (prices/notice). Position number controls the order.
+
+### The baker (bio)
+
+Your "Hi, I'm Alex" section. Edit the italic line under the heading, your bio (separate paragraphs with a blank line), your portrait photo, and the two testimonial quote cards.
+
+### Journal / newsletter
+
+The featured issue card: issue number, date, title, excerpt, reading time, and cover photo. Plus the "From the archive" list underneath.
+
+### Site settings
+
+The practical stuff: phone number, email, city, Instagram handle, the online shop link, and pickup hours (both the short line in the tiramisu section and the day-by-day hours in the footer).
+
 ## The one rule
 
 **Nothing goes live until you press the green Publish button.** You can edit and preview safely; if you don't publish, the website doesn't change. After you publish, give it 2-3 minutes and refresh the site.
 
 ## If something looks wrong
 
-Don't panic, nothing is ever lost. Every document has a history (three-dot menu → Review changes) and you can restore any earlier version. And you can always text Ryan.
+Don't panic, nothing is ever lost. Every document has a history (three-dot menu → Review changes) and you can restore any earlier version. If you're both editing at the same time, the editor syncs live like a Google Doc. And you can always text Ryan.

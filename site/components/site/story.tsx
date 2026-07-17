@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { brand, testimonials } from "@/lib/content";
+import type { StoryContent } from "@/lib/cms";
 import { Reveal } from "./reveal";
 
 // Torn-paper mask SVGs: a black rectangle whose edges get displaced by
@@ -49,7 +49,7 @@ const PAPER_CRINKLE = `url("data:image/svg+xml;utf8,${encodeURIComponent(
   </svg>`
 )}")`;
 
-export function Story() {
+export function Story({ story, bakerName }: { story: StoryContent; bakerName: string }) {
   const reduce = useReducedMotion();
 
   return (
@@ -96,8 +96,8 @@ export function Story() {
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src="/gallery/alex-portrait.jpg"
-                    alt="Alex, founder and baker behind Elephantaes Cakes & Delicacies"
+                    src={story.photo}
+                    alt={story.photoAlt}
                     className="absolute inset-0 h-full w-full object-cover"
                     style={{ objectPosition: "center 25%" }}
                   />
@@ -121,7 +121,7 @@ export function Story() {
               {/* signature badge — stays clean and round, sitting on top */}
               <div className="absolute -bottom-6 -right-6 rounded-full bg-cream-100 ring-1 ring-forest-700/15 shadow-card px-5 py-4 text-center z-10">
                 <span className="block font-script text-3xl text-forest-700 leading-none">
-                  {brand.bakerName ?? "hello."}
+                  {bakerName ?? "hello."}
                 </span>
                 <span className="mt-1 block text-[10px] uppercase tracking-[0.22em] text-forest-700/70">
                   the baker
@@ -136,31 +136,22 @@ export function Story() {
                 The story
               </span>
               <h2 className="mt-6 font-display text-4xl md:text-5xl text-forest-800 tracking-tight text-balance">
-                Hi, I'm {brand.bakerName}.
+                Hi, I'm {bakerName}.
                 <span className="block italic font-light text-forest-700/85">
-                  One pair of hands, a lot of butter.
+                  {story.subline}
                 </span>
               </h2>
             </Reveal>
             <Reveal delay={0.1}>
               <div className="mt-8 space-y-5 text-lg leading-relaxed text-ink-soft text-pretty">
-                <p>
-                  Elephantaes started, like most good things, with a stubborn
-                  recipe and a kitchen too small for it. I bake the way I was
-                  taught — slowly, with both hands, and with a cup of strong
-                  coffee on the counter.
-                </p>
-                <p>
-                  Every order is built from real butter, seasonal fruit and
-                  flour I can trace by name. No shortcuts, no fillers, no
-                  fondant cement. Just cake that tastes the way you remember
-                  cake tasting before you grew up.
-                </p>
+                {story.paragraphs.map((p) => (
+                  <p key={p.slice(0, 40)}>{p}</p>
+                ))}
               </div>
             </Reveal>
 
             <div className="mt-12 grid sm:grid-cols-2 gap-5">
-              {testimonials.map((t, i) => (
+              {story.testimonials.map((t, i) => (
                 <motion.figure
                   key={t.attribution}
                   initial={reduce ? false : { opacity: 0, y: 24 }}

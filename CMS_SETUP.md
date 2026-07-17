@@ -1,5 +1,22 @@
 # CMS Setup Guide (for Ryan)
 
+## Round 2 rollout (2026-07-17): everything editable
+
+Four new content types were added (What we bake cards, The baker bio, Journal, Site settings). To roll out:
+
+1. Deploy the updated studio: `cd studio` then `npm run deploy`
+2. Create a temp write token (sanity.io/manage → API → Tokens → Editor), then in PowerShell from `/studio`:
+   `$env:SANITY_STUDIO_PROJECT_ID="yxd68kno"; $env:SANITY_WRITE_TOKEN="sk..."; node seed-round2.mjs`
+3. Delete the token
+4. Push the site code: `git add -A; git commit -m "CMS round 2: bio, journal, cards, settings"; git push`
+5. Netlify rebuilds; verify elephantaes.com looks identical, then spot-check by editing the bio in the studio and publishing
+
+Note: header and hero copy are intentionally NOT in the CMS (art-directed typography). If Alex asks, that's a Ryan job.
+
+---
+
+## Original setup (2026-07-03)
+
 Goal: Alex logs into a friendly editor, changes photos/cards/prices, hits Publish, and the live site updates in about 2 minutes. No involvement from you after setup.
 
 ## What was built this session

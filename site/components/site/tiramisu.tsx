@@ -2,13 +2,12 @@
 
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
-import { brand } from "@/lib/content";
-import type { TiramisuItem } from "@/lib/cms";
+import type { SiteSettings, TiramisuItem } from "@/lib/cms";
 import { Reveal } from "./reveal";
 import { RevealText } from "./reveal-text";
 import { WaxSeal } from "./wax-seal";
 
-export function Tiramisu({ menu }: { menu: TiramisuItem[] }) {
+export function Tiramisu({ menu, settings }: { menu: TiramisuItem[]; settings: SiteSettings }) {
   const reduce = useReducedMotion();
 
   return (
@@ -114,7 +113,7 @@ export function Tiramisu({ menu }: { menu: TiramisuItem[] }) {
         <Reveal delay={0.1} className="mt-16">
           <div className="flex flex-col items-center text-center gap-6">
             <motion.a
-              href={brand.shopUrl}
+              href={settings.shopUrl}
               target="_blank"
               rel="noopener noreferrer"
               whileHover={reduce ? undefined : { scale: 1.03 }}
@@ -134,18 +133,18 @@ export function Tiramisu({ menu }: { menu: TiramisuItem[] }) {
             <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-5 text-[11px] uppercase tracking-[0.32em] text-cream-200/65">
               <span className="inline-flex items-center gap-2">
                 <span className="h-px w-6 bg-honey/50" />
-                Pickup · Sat 9–12 · Sun 2–5
+                {settings.pickupLine}
                 <span className="h-px w-6 bg-honey/50" />
               </span>
             </div>
 
             <a
-              href={brand.instagramUrl}
+              href={settings.instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm text-cream-200/70 underline-offset-4 hover:text-cream-100 hover:underline transition-colors"
             >
-              or DM @{brand.instagramHandle} for off-menu
+              or DM @{settings.instagramHandle} for off-menu
             </a>
           </div>
         </Reveal>

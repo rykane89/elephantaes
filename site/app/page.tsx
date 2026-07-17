@@ -11,16 +11,29 @@ import { Story } from "@/components/site/story";
 import { Journal } from "@/components/site/journal";
 import { Inquiry } from "@/components/site/inquiry";
 import { Footer } from "@/components/site/footer";
-import { getCollab, getGalleryPhotos, getTiramisuMenu } from "@/lib/cms";
+import {
+  getCollab,
+  getGalleryPhotos,
+  getJournal,
+  getSignatures,
+  getSiteSettings,
+  getStory,
+  getTiramisuMenu,
+} from "@/lib/cms";
 
 export default async function Home() {
   // Fetched from Sanity at build time; falls back to lib/content.ts
   // when the CMS isn't configured or unreachable.
-  const [collab, tiramisuMenu, galleryPhotos] = await Promise.all([
-    getCollab(),
-    getTiramisuMenu(),
-    getGalleryPhotos(),
-  ]);
+  const [collab, tiramisuMenu, galleryPhotos, signatureCards, story, journal, settings] =
+    await Promise.all([
+      getCollab(),
+      getTiramisuMenu(),
+      getGalleryPhotos(),
+      getSignatures(),
+      getStory(),
+      getJournal(),
+      getSiteSettings(),
+    ]);
 
   return (
     <>
@@ -30,15 +43,15 @@ export default async function Home() {
       <main className="relative z-10">
         <Hero />
         <Collab collab={collab} />
-        <Signatures />
-        <Tiramisu menu={tiramisuMenu} />
+        <Signatures cards={signatureCards} />
+        <Tiramisu menu={tiramisuMenu} settings={settings} />
         <Marquee />
-        <Gallery photos={galleryPhotos} />
-        <Story />
-        <Journal />
+        <Gallery photos={galleryPhotos} settings={settings} />
+        <Story story={story} bakerName={settings.bakerName} />
+        <Journal journal={journal} />
         <Inquiry />
       </main>
-      <Footer />
+      <Footer settings={settings} />
     </>
   );
 }

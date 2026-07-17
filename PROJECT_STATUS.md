@@ -1,6 +1,27 @@
 # Elephantaes · Project Handoff
 
-**Last updated:** 2026-07-03
+**Last updated:** 2026-07-17
+
+## 2026-07-17 session: CMS round 2 (everything editable)
+
+CMS round 1 fully deployed and live: repo on GitHub (rykane89/elephantaes), Netlify git builds, Sanity project `yxd68kno`, studio at elephantaes.sanity.studio, seeded, webhook rebuilds working. Alex AND Deepak invited as Editors (3/3 free-plan seats used).
+
+Alex asked to edit her bio and the newsletter. This session added four new content types:
+
+- `signatureCard` (the 4 "What we bake" cards)
+- `storySection` (singleton: heading subline, bio paragraphs, portrait photo, testimonials)
+- `journalSection` (singleton: featured issue + archive list)
+- `siteSettings` (singleton: baker name, phone, email, city, IG handle, shop URL, pickup line + hours)
+
+Site changes: new getters in `lib/cms.ts` (same fallback pattern), `Signatures`/`Story`/`Journal`/`Footer` take props, `Tiramisu`/`Gallery` take a `settings` prop (shop URL, pickup line, IG links). Header/hero copy intentionally still hardcoded (art-directed). `phoneTel` derived from phone; `instagramUrl` derived from handle. tsc --noEmit clean.
+
+New file `/studio/seed-round2.mjs` seeds the four new types with current content.
+
+Rollout steps (in CMS_SETUP.md round-2 section): studio `npm run deploy`, new temp write token, run seed-round2, delete token, git push.
+
+---
+
+**Previous:** 2026-07-03
 
 ## 2026-07-03 session: CMS for Alex (Sanity)
 

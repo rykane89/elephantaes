@@ -1,18 +1,29 @@
-# Netlify config for the Elephantaes landing page.
+# Netlify config for the Elephantaes landing page + admin studio.
 #
-# Two ways to deploy:
-#  1. Drag-and-drop: build locally with `npm --prefix site run build`,
-#     then drag `site/out` onto https://app.netlify.com/drop
-#  2. Git-based: push this repo to GitHub and connect it in Netlify.
-#     With this file at the root, Netlify auto-uses the settings below.
+# Git-based deploys: push to GitHub, Netlify builds automatically.
+# The build does two things:
+#   1. Builds the Next.js site (static export to site/out)
+#   2. Builds the Sanity Studio and copies it to site/out/admin,
+#      so the editor lives at elephantaes.com/admin
 
 [build]
   base = "site"
-  command = "npm run build"
+  command = "npm run build && cd ../studio && npm install && npm run build && cp -r dist ../site/out/admin && cp -r dist/static ../site/out/static"
   publish = "out"
 
 [build.environment]
   NODE_VERSION = "20"
+  # Sanity project (not secret — it's visible in client requests anyway)
+  SANITY_STUDIO_PROJECT_ID = "yxd68kno"
+  SANITY_STUDIO_DATASET = "production"
+
+# The studio is a single-page app: deep links under /admin need to fall
+# back to its index.html. Real files (JS/CSS assets) still serve normally
+# because this redirect isn't forced.
+[[redirects]]
+  from = "/admin/*"
+  to = "/admin/index.html"
+  status = 200
 
 [[headers]]
   for = "/_next/static/*"

@@ -59,7 +59,7 @@ export type JournalContent = {
   cover: string;
   coverAlt: string;
   link: string;
-  archive: { title: string; date: string }[];
+  archive: { title: string; date: string; link?: string }[];
 };
 
 export type SiteSettings = {
@@ -229,16 +229,17 @@ const fallbackJournal: JournalContent = {
   readingTime: fallbackNewsletter.readingTime,
   cover: "/gallery/holiday-cookie-box-closed.jpg",
   coverAlt: "Latest issue cover — holiday cookie box",
-  link: fallbackNewsletter.link,
+  // Empty link hides the "Read the issue" button until a real issue URL exists.
+  link: "",
   archive: fallbackArchive,
 };
 
 export async function getJournal(): Promise<JournalContent> {
   const result = await sanityQuery<Partial<JournalContent> & { cover?: string | null }>(
     `*[_type == "journalSection"][0] {
-      issue, date, title, excerpt, readingTime,
+      issue, date, title, excerpt, readingTime, link,
       "cover": cover.asset->url,
-      archive[]{ title, date }
+      archive[]{ title, date, link }
     }`
   );
   if (!result) return fallbackJournal;
@@ -250,7 +251,7 @@ export async function getJournal(): Promise<JournalContent> {
     readingTime: result.readingTime ?? fallbackJournal.readingTime,
     cover: result.cover ?? fallbackJournal.cover,
     coverAlt: result.title ? `Latest issue cover — ${result.title}` : fallbackJournal.coverAlt,
-    link: fallbackJournal.link,
+    link: result.link ?? fallbackJournal.link,
     archive: result.archive?.filter((a) => a?.title) ?? fallbackJournal.archive,
   };
 }

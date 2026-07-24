@@ -36,6 +36,13 @@ export const journalSection = defineType({
       type: "string",
     }),
     defineField({
+      name: "link",
+      title: "Link to the issue",
+      description:
+        "Where \"Read the issue\" goes — an Instagram post, a Substack page, anywhere the issue lives. Leave empty to hide the button.",
+      type: "url",
+    }),
+    defineField({
       name: "cover",
       title: "Cover photo",
       type: "image",
@@ -56,6 +63,12 @@ export const journalSection = defineType({
               title: "Date",
               description: 'E.g. "Mar 2026".',
               type: "string",
+            }),
+            defineField({
+              name: "link",
+              title: "Link",
+              description: "Where this issue lives. Leave empty and the row shows without a link.",
+              type: "url",
             }),
           ],
           preview: { select: { title: "title", subtitle: "date" } },

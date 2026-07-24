@@ -1,6 +1,36 @@
 # Elephantaes · Project Handoff
 
-**Last updated:** 2026-07-17
+**Last updated:** 2026-07-24 (second pass)
+
+## 2026-07-24 session, part 2: branded admin at elephantaes.com/admin
+
+Ryan compared the Sanity studio to the Vals pitch admin (custom React dashboard — but localStorage-only, no real backend; Vals phase 2 = add DB/auth, which is what Sanity already provides here). Decision: keep Sanity as engine, make the front feel first-party.
+
+- **Studio themed** in brand palette via `buildLegacyTheme` (`studio/theme.ts`): cream surfaces, forest primary, honey accents, deep-forest navbar. Logo mark as workspace icon (`studio/components/Logo.tsx`, logo-mark.png copied into /studio).
+- **Served at elephantaes.com/admin:** `basePath: "/admin"` in sanity.config.ts; netlify.toml build now also builds the studio and copies `dist` → `out/admin` AND `dist/static` → `out/static` (the studio HTML hardcodes root-absolute /static asset URLs — Vite base override does NOT work, don't retry it). SPA redirect `/admin/*` → `/admin/index.html` (non-forced).
+- `SANITY_STUDIO_PROJECT_ID`/`DATASET` set in netlify.toml build env (not secret).
+- elephantaes.sanity.studio kept as fallback (redeploy with `npm run deploy` to keep in sync when schemas change).
+- **Manual step required: add https://elephantaes.com (and www variant) to Sanity CORS origins with credentials allowed** (sanity.io/manage → API → CORS origins), or /admin can't reach the API.
+- Verified in sandbox: studio builds clean with theme + basePath; asset paths consistent.
+- Strategy note for future clients: custom-feel admin front + managed backend (Sanity/Supabase). Vals phase 2 (store.js → Supabase) is where the reusable custom-admin template gets built.
+
+---
+
+**Same day, part 1:**
+
+## 2026-07-24 session: forms live + journal links (Alex's follow-ups)
+
+Alex asked: (1) can she edit the subscribe section / does it cost money, (2) Square "Order online" link not working, (3) how to edit the archive + make "Read the issue" clickable.
+
+- **Both forms wired to Netlify Forms** (newsletter in journal.tsx, inquiry in inquiry.tsx). Free tier (100 submissions/mo). Added name attrs, data-netlify, honeypots, real fetch POST. After deploy: verify forms appear in Netlify → Forms, and ADD EMAIL NOTIFICATIONS (Netlify → Forms/Notifications) to Alex + Ryan.
+- **Journal links editable:** `link` field on the featured issue ("Read the issue" hides when empty) and on each archive item (row is plain text when empty). Schema + cms.ts + component updated. No re-seed needed; fields start empty.
+- **Square:** elephantaes.square.site resolves and is a real Square Online site. "Not working" = Square-side setup unfinished (items/publish/pickup checkout). See SQUARE_SETUP.md + import spreadsheets from May. If her real shop URL differs, she can change it herself in studio → Site settings → Online shop link.
+- Newsletter cost answer: collecting signups is $0. Sending newsletters is a separate future decision (Buttondown/Kit/Mailchimp free tiers likely cover her volume).
+- tsc --noEmit clean. Rollout: studio `npm run deploy`, then git push. No token/seed needed this time.
+
+---
+
+**Previous:** 2026-07-17
 
 ## 2026-07-17 session: CMS round 2 (everything editable)
 

@@ -3,6 +3,8 @@ import { structureTool } from "sanity/structure";
 import { visionTool } from "@sanity/vision";
 import { schemaTypes } from "./schemas";
 import { structure } from "./structure";
+import { elephantaesTheme } from "./theme";
+import { Logo } from "./components/Logo";
 
 // Project ID comes from .env (SANITY_STUDIO_PROJECT_ID) or replace the
 // fallback string below after creating the project at sanity.io/manage.
@@ -12,9 +14,13 @@ const dataset = process.env.SANITY_STUDIO_DATASET || "production";
 
 export default defineConfig({
   name: "elephantaes",
-  title: "Elephantaes · Site Editor",
+  title: "Elephantaes",
   projectId,
   dataset,
+  // Served from the main site at elephantaes.com/admin (see netlify.toml).
+  basePath: "/admin",
+  icon: Logo,
+  theme: elephantaesTheme,
   plugins: [structureTool({ structure }), visionTool()],
   schema: { types: schemaTypes },
 });

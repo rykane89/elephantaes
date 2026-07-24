@@ -35,9 +35,14 @@ export function Inquiry() {
     e.preventDefault();
     if (state === "loading") return;
     setState("loading");
+    // Submits to Netlify Forms (form is detected in the prerendered HTML).
     try {
-      // Stubbed — replace with a real endpoint (Formspree, /api/inquiry, etc).
-      await new Promise((r) => setTimeout(r, 800));
+      const res = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({ "form-name": "inquiry", ...form }).toString(),
+      });
+      if (!res.ok) throw new Error(`Form submit failed: ${res.status}`);
       setState("done");
       setForm({
         name: "",
@@ -94,6 +99,10 @@ export function Inquiry() {
 
           <Reveal delay={0.1} className="lg:col-span-7">
             <motion.form
+              name="inquiry"
+              method="POST"
+              data-netlify="true"
+              netlify-honeypot="bot-field"
               onSubmit={onSubmit}
               initial={reduce ? false : { opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -102,9 +111,16 @@ export function Inquiry() {
               className="relative overflow-visible rounded-3xl bg-cream-50/80 backdrop-blur border border-forest-700/10 p-7 md:p-10 shadow-card"
             >
               <Confetti show={state === "done"} />
+              <input type="hidden" name="form-name" value="inquiry" />
+              <p className="hidden" aria-hidden="true">
+                <label>
+                  Leave this empty: <input name="bot-field" />
+                </label>
+              </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <Field
                   label="Your name"
+                  name="name"
                   required
                   value={form.name}
                   onChange={(v) => set("name", v)}
@@ -112,6 +128,7 @@ export function Inquiry() {
                 />
                 <Field
                   label="Email"
+                  name="email"
                   type="email"
                   required
                   value={form.email}
@@ -120,18 +137,21 @@ export function Inquiry() {
                 />
                 <SelectField
                   label="Occasion"
+                  name="occasion"
                   value={form.occasion}
                   onChange={(v) => set("occasion", v)}
                   options={occasions}
                 />
                 <Field
                   label="Date of event"
+                  name="date"
                   type="date"
                   value={form.date}
                   onChange={(v) => set("date", v)}
                 />
                 <Field
                   label="Approx. servings"
+                  name="servings"
                   value={form.servings}
                   onChange={(v) => set("servings", v)}
                   placeholder="40 people"
@@ -142,6 +162,7 @@ export function Inquiry() {
                     Tell me about it
                   </label>
                   <textarea
+                    name="message"
                     required
                     rows={5}
                     value={form.message}
@@ -191,6 +212,7 @@ export function Inquiry() {
 
 function Field({
   label,
+  name,
   value,
   onChange,
   type = "text",
@@ -199,6 +221,7 @@ function Field({
   className,
 }: {
   label: string;
+  name: string;
   value: string;
   onChange: (v: string) => void;
   type?: string;
@@ -214,6 +237,7 @@ function Field({
       </label>
       <input
         type={type}
+        name={name}
         value={value}
         required={required}
         placeholder={placeholder}
@@ -226,11 +250,13 @@ function Field({
 
 function SelectField({
   label,
+  name,
   value,
   onChange,
   options,
 }: {
   label: string;
+  name: string;
   value: string;
   onChange: (v: string) => void;
   options: string[];
@@ -241,6 +267,7 @@ function SelectField({
         {label}
       </label>
       <select
+        name={name}
         value={value}
         onChange={(e) => onChange(e.target.value)}
         className="mt-2 w-full appearance-none rounded-full bg-cream-100 border border-forest-700/15 px-4 py-3 text-sm text-ink focus:outline-none focus:ring-2 focus:ring-forest-700/30"

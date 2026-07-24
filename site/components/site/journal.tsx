@@ -15,9 +15,14 @@ export function Journal({ journal }: { journal: JournalContent }) {
     e.preventDefault();
     if (!email || state === "loading") return;
     setState("loading");
-    // Stubbed: swap with Mailchimp / Kit / Buttondown endpoint when chosen.
+    // Submits to Netlify Forms (form is detected in the prerendered HTML).
     try {
-      await new Promise((r) => setTimeout(r, 700));
+      const res = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({ "form-name": "newsletter", email }).toString(),
+      });
+      if (!res.ok) throw new Error(`Form submit failed: ${res.status}`);
       setState("done");
       setEmail("");
     } catch {
@@ -75,13 +80,17 @@ export function Journal({ journal }: { journal: JournalContent }) {
                     <span className="text-[11px] uppercase tracking-[0.22em] text-forest-700/70">
                       {journal.readingTime}
                     </span>
-                    <a
-                      href={journal.link}
-                      className="inline-flex items-center gap-2 text-sm text-forest-700 hover:text-forest-800 transition-colors group/link"
-                    >
-                      Read the issue
-                      <ArrowRight className="h-4 w-4 transition-transform group-hover/link:translate-x-0.5" />
-                    </a>
+                    {journal.link && (
+                      <a
+                        href={journal.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-sm text-forest-700 hover:text-forest-800 transition-colors group/link"
+                      >
+                        Read the issue
+                        <ArrowRight className="h-4 w-4 transition-transform group-hover/link:translate-x-0.5" />
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>
@@ -92,21 +101,36 @@ export function Journal({ journal }: { journal: JournalContent }) {
                 From the archive
               </h4>
               <ul className="mt-5 divide-y divide-forest-700/10 border-t border-b border-forest-700/10">
-                {journal.archive.map((a) => (
-                  <li key={a.title}>
-                    <a
-                      href="#"
-                      className="flex items-baseline justify-between gap-6 py-4 group hover:text-forest-800 transition-colors"
-                    >
-                      <span className="font-display text-lg md:text-xl text-forest-800 group-hover:underline decoration-forest-700/40 underline-offset-4">
-                        {a.title}
-                      </span>
-                      <span className="shrink-0 text-[11px] uppercase tracking-[0.22em] text-forest-700/60">
-                        {a.date}
-                      </span>
-                    </a>
-                  </li>
-                ))}
+                {journal.archive.map((a) =>
+                  a.link ? (
+                    <li key={a.title}>
+                      <a
+                        href={a.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-baseline justify-between gap-6 py-4 group hover:text-forest-800 transition-colors"
+                      >
+                        <span className="font-display text-lg md:text-xl text-forest-800 group-hover:underline decoration-forest-700/40 underline-offset-4">
+                          {a.title}
+                        </span>
+                        <span className="shrink-0 text-[11px] uppercase tracking-[0.22em] text-forest-700/60">
+                          {a.date}
+                        </span>
+                      </a>
+                    </li>
+                  ) : (
+                    <li key={a.title}>
+                      <div className="flex items-baseline justify-between gap-6 py-4">
+                        <span className="font-display text-lg md:text-xl text-forest-800">
+                          {a.title}
+                        </span>
+                        <span className="shrink-0 text-[11px] uppercase tracking-[0.22em] text-forest-700/60">
+                          {a.date}
+                        </span>
+                      </div>
+                    </li>
+                  )
+                )}
               </ul>
             </div>
           </Reveal>
@@ -130,11 +154,25 @@ export function Journal({ journal }: { journal: JournalContent }) {
                   any time, no hard feelings.
                 </p>
 
-                <form onSubmit={onSubmit} className="mt-7">
+                <form
+                  name="newsletter"
+                  method="POST"
+                  data-netlify="true"
+                  netlify-honeypot="bot-field"
+                  onSubmit={onSubmit}
+                  className="mt-7"
+                >
+                  <input type="hidden" name="form-name" value="newsletter" />
+                  <p className="hidden" aria-hidden="true">
+                    <label>
+                      Leave this empty: <input name="bot-field" />
+                    </label>
+                  </p>
                   <label htmlFor="newsletter-email" className="sr-only">Email</label>
                   <div className="flex flex-col sm:flex-row gap-3">
                     <input
                       id="newsletter-email"
+                      name="email"
                       type="email"
                       required
                       placeholder="you@goodtaste.com"

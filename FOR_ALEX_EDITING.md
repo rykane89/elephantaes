@@ -4,9 +4,11 @@ Your website has an editor where you can change photos, tiramisu flavours, price
 
 ## Logging in
 
-1. Go to **elephantaes.sanity.studio**
+1. Go to **elephantaes.com/admin**
 2. Sign in with your Google account (the email Ryan invited)
 3. Bookmark it
+
+(The old elephantaes.sanity.studio address still works too — same editor, same content.)
 
 ## What you can edit
 
@@ -45,7 +47,11 @@ Your "Hi, I'm Alex" section. Edit the italic line under the heading, your bio (s
 
 ### Journal / newsletter
 
-The featured issue card: issue number, date, title, excerpt, reading time, and cover photo. Plus the "From the archive" list underneath.
+The featured issue card: issue number, date, title, excerpt, reading time, cover photo, and a link for the "Read the issue" button (point it at an Instagram post or wherever the issue lives; leave it empty and the button hides). The "From the archive" list is the Archive field in the same section, and each archive entry can have its own link too.
+
+### Newsletter signups
+
+The subscribe form on the site is live. When someone signs up, their email is saved and you get an email notification. The text on the subscribe card itself is fixed for now; ask Ryan if you want it changed.
 
 ### Site settings
 

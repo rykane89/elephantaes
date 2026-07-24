@@ -5,6 +5,8 @@ import { signatureCard } from "./signatureCard";
 import { storySection } from "./storySection";
 import { journalSection } from "./journalSection";
 import { siteSettings } from "./siteSettings";
+import { subscriber } from "./subscriber";
+import { cakeEnquiry } from "./cakeEnquiry";
 
 export const schemaTypes = [
   galleryPhoto,
@@ -14,4 +16,6 @@ export const schemaTypes = [
   storySection,
   journalSection,
   siteSettings,
+  subscriber,
+  cakeEnquiry,
 ];

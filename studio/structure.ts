@@ -60,4 +60,19 @@ export const structure: StructureResolver = (S) =>
             .documentId("siteSettings")
             .title("Site settings")
         ),
+      S.divider(),
+      S.listItem()
+        .title("Mailing list")
+        .child(
+          S.documentTypeList("subscriber")
+            .title("Mailing list")
+            .defaultOrdering([{ field: "submittedAt", direction: "desc" }])
+        ),
+      S.listItem()
+        .title("Cake enquiries")
+        .child(
+          S.documentTypeList("cakeEnquiry")
+            .title("Cake enquiries")
+            .defaultOrdering([{ field: "submittedAt", direction: "desc" }])
+        ),
     ]);

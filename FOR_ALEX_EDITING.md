@@ -49,9 +49,9 @@ Your "Hi, I'm Alex" section. Edit the italic line under the heading, your bio (s
 
 The featured issue card: issue number, date, title, excerpt, reading time, cover photo, and a link for the "Read the issue" button (point it at an Instagram post or wherever the issue lives; leave it empty and the button hides). The "From the archive" list is the Archive field in the same section, and each archive entry can have its own link too.
 
-### Newsletter signups
+### Mailing list and Cake enquiries (your inbox)
 
-The subscribe form on the site is live. When someone signs up, their email is saved and you get an email notification. The text on the subscribe card itself is fixed for now; ask Ryan if you want it changed.
+At the bottom of the editor sidebar you'll find **Mailing list** and **Cake enquiries**. When someone subscribes on the site or sends the "Order a cake" form, it appears there automatically (newest first) and you also get an email notification. These entries are read-only; you can delete ones you've handled. The text on the subscribe card itself is fixed for now; ask Ryan if you want it changed.
 
 ### Site settings
 

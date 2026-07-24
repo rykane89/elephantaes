@@ -17,6 +17,11 @@
   SANITY_STUDIO_PROJECT_ID = "yxd68kno"
   SANITY_STUDIO_DATASET = "production"
 
+# submission-created.mjs copies form submissions into Sanity so they appear
+# in the admin panel. Needs SANITY_WRITE_TOKEN set in the Netlify UI (secret).
+[functions]
+  directory = "netlify/functions"
+
 # The studio is a single-page app: deep links under /admin need to fall
 # back to its index.html. Real files (JS/CSS assets) still serve normally
 # because this redirect isn't forced.

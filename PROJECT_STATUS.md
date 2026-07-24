@@ -2,6 +2,19 @@
 
 **Last updated:** 2026-07-24 (second pass)
 
+## 2026-07-24 session, part 3: form submissions land in the admin panel
+
+Ryan wanted signups/enquiries visible to Alex without Netlify access. Implemented via Netlify's reserved `submission-created` event function:
+
+- `site/netlify/functions/submission-created.mjs` — fires on every verified (spam-filtered) form submission, writes to Sanity via the mutate API (plain fetch, zero deps). Newsletter → `subscriber` docs (deterministic `_id` from email = automatic dedupe via createIfNotExists). Inquiry → `cakeEnquiry` docs.
+- New read-only studio types `subscriber` + `cakeEnquiry`; sidebar gets "Mailing list" and "Cake enquiries" (newest first, delete allowed for handled/unsubscribed).
+- netlify.toml: `[functions] directory = "netlify/functions"` (relative to base "site").
+- **Manual step: create a permanent Sanity API token (Editor, name "netlify-forms") and add it in Netlify UI as env var `SANITY_WRITE_TOKEN` (mark secret). Do NOT put it in netlify.toml.**
+- Email notifications (Netlify → Forms → notifications → Alex's Gmail) still recommended as the push channel; the admin lists are the archive.
+- Studio builds clean with the new sections.
+
+---
+
 ## 2026-07-24 session, part 2: branded admin at elephantaes.com/admin
 
 Ryan compared the Sanity studio to the Vals pitch admin (custom React dashboard — but localStorage-only, no real backend; Vals phase 2 = add DB/auth, which is what Sanity already provides here). Decision: keep Sanity as engine, make the front feel first-party.
